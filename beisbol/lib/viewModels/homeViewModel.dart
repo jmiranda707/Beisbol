@@ -1,3 +1,4 @@
+import 'package:beisbol/models/datosInningModel.dart';
 import 'package:beisbol/models/equipoModel.dart';
 import 'package:beisbol/settings/persistence.dart';
 import 'package:flutter/cupertino.dart';
@@ -6,8 +7,30 @@ import 'package:flutter/material.dart';
 class HomeViewModel extends ChangeNotifier {
   Equipo _equipo1;
   Equipo _equipo2;
+  DatosInning _datos;
+  int _timeSelected = 90;
+  int _inningSelected = 7;
 
   final prefs = new PersistenceLocal();
+  
+  get inningSelected {
+    return _inningSelected;
+  }
+
+  set inningSelected(int value) {
+    this._inningSelected = value;
+    notifyListeners();
+  }
+
+  get timeSelected {
+    return _timeSelected;
+  }
+
+  set timeSelected(int value) {
+    this._timeSelected = value;
+    notifyListeners();
+  }
+
 
   get equipo1 {
     return _equipo1;
@@ -15,6 +38,15 @@ class HomeViewModel extends ChangeNotifier {
 
   set equipo1(Equipo value) {
     this._equipo1 = value;
+    notifyListeners();
+  }
+
+  get datos {
+    return _datos;
+  }
+
+  set datos(DatosInning value) {
+    this._datos = value;
     notifyListeners();
   }
 
@@ -61,6 +93,20 @@ class HomeViewModel extends ChangeNotifier {
      equipo.nombre = nombre;
      this.equipo2 = equipo;
      Navigator.pushNamed(context, 'configuracionPage');
+  }
+
+  goToResultado(BuildContext context){
+     DatosInning datos = new DatosInning();
+     datos.inningActual = 1;
+     datos.outs = 0;
+     datos.primeraBusy = false;
+     datos.segundaBusy = false;
+     datos.terceraBusy = false;
+     datos.time = this.timeSelected;
+     datos.totalInnings = this.inningSelected;
+     datos.abriendoCerrando = 'abriendo'; //cerrando
+     this.datos = datos;
+     Navigator.pushNamed(context, 'resultadoPage');
   }
 
 }

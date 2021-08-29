@@ -50,12 +50,12 @@ class _ConfiguracionPageState extends State<ConfiguracionPage> {
       ),
       body: Stack(
         children: [
-          /* Image(
+           Image(
                 fit: BoxFit.fill,
                 width: double.infinity,
                 height: double.infinity,
-                image: AssetImage("assets/wallpapers/campo.jpg"),
-              ),*/
+                image: AssetImage("assets/wallpapers/configuracion.jpg"),
+              ),
           Container(
             margin: EdgeInsets.all(w(50)),
             padding: EdgeInsets.symmetric(vertical: w(30), horizontal: w(60)),
@@ -72,7 +72,7 @@ class _ConfiguracionPageState extends State<ConfiguracionPage> {
                 width: 200,
                 color: Colorz.rojo,
                 function: (){
-                  //Navigator.pushNamed(context, 'seleccioneLogo');
+                  Provider.of<HomeViewModel>(context, listen: false).goToResultado(context);
                 },
                 height: 60,
                 nameButton: 'PLAY BALL',

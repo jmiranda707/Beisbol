@@ -1,7 +1,9 @@
 import 'package:beisbol/settings/colorz.dart';
 import 'package:beisbol/settings/persistence.dart';
 import 'package:beisbol/settings/responsive.dart';
+import 'package:beisbol/viewModels/homeViewModel.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 class Slide extends StatefulWidget {
@@ -46,6 +48,7 @@ class _SlideState extends State<Slide> {
           minorTicksPerInterval: 0,
           activeColor: Colorz.rojo,
           inactiveColor: Colors.blueGrey,
+          
           showDivisors: false,
           stepSize: 1,
           labelFormatterCallback: (dynamic actualValue, String formattedText) {
@@ -62,6 +65,7 @@ class _SlideState extends State<Slide> {
           onChanged: (dynamic newValue) {
             setState(() {
               value = newValue;
+              Provider.of<HomeViewModel>(context, listen: false).inningSelected = value.toInt();
             });
           },
         ),
@@ -128,6 +132,7 @@ class _SlideTimeState extends State<SlideTime> {
           onChanged: (dynamic newValue) {
             setState(() {
               value = newValue;
+              Provider.of<HomeViewModel>(context, listen: false).timeSelected = value.toInt();
             });
           },
         ),
