@@ -1,3 +1,4 @@
+import 'package:beisbol/models/equipoModel.dart';
 import 'package:beisbol/settings/colorz.dart';
 import 'package:beisbol/settings/responsive.dart';
 import 'package:beisbol/viewModels/homeViewModel.dart';
@@ -6,11 +7,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
-class SeleccioneLogoPage extends StatelessWidget {
-  const SeleccioneLogoPage({Key key}) : super(key: key);
+class SeleccioneLogo2Page extends StatelessWidget {
+  const SeleccioneLogo2Page({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    
     ScreenUtil.init(context,
         width: SizesCustom.width,
         height: SizesCustom.height,
@@ -21,14 +23,14 @@ class SeleccioneLogoPage extends StatelessWidget {
         backgroundColor: Colorz.rojo,
         title: Row(
           children: [
-            Text('EQUIPO 1: ', style: TextStyle(
+            Text('EQUIPO 2: ', style: TextStyle(
                                 fontSize: f(25),
                                 fontWeight: FontWeight.bold,
                                 color: Colorz.blanco)),
                                 Text('Seleccione Logo del Equipo', style: TextStyle(
                             fontSize: f(25),
                             fontWeight: FontWeight.bold,
-                            color: Colorz.blanco))
+                            color: Colorz.blanco,))
           ],
         ),
       ),
@@ -46,6 +48,7 @@ class SeleccioneLogoPage extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
+                
                     Expanded(child: SizedBox()),
                 _rows(
                     'princesa.png',
@@ -69,20 +72,27 @@ class SeleccioneLogoPage extends StatelessWidget {
   }
 
 _avatars(String path, Color color, BuildContext context) {
+  Equipo equipo= Provider.of<HomeViewModel>(context).equipo1;
     return Container(
       child: CircleAvatar(
-        backgroundColor: color,
+        backgroundColor: color.withOpacity(0.9),
         radius: w(130),
         child: InkWell(
-                onTap: ()=>  Provider.of<HomeViewModel>(context, listen:false).goToNombreEquipo1(context, path, color)
+                onTap: (equipo.logoImage== path)?null:()=>  Provider.of<HomeViewModel>(context, listen:false).goToNombreEquipo2(context, path, color)
 ,
-                        child: Image(
+                        child: Stack(
+                          children: [
+                            Image(
             fit: BoxFit.contain,
             image: AssetImage("assets/logosEquipos/$path"),
           ),
+                  (equipo.logoImage== path)?Center(child: Icon(Icons.check, size: w(320), color: Colors.red[900])): Offstage()
+
+                          ],
+                        ),
         ),
       ),
-      decoration: new BoxDecoration(
+       decoration: new BoxDecoration(
     color: Colorz.blanco, // border color
     shape: BoxShape.circle,
     border: new Border.all(
@@ -106,7 +116,4 @@ _avatars(String path, Color color, BuildContext context) {
           );
         }
       
-
-  
-
 }

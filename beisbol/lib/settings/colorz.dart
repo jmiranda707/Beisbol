@@ -7,9 +7,10 @@ class Colorz {
   static const Color blanco = Colors.white;
   static const Color amarillo = Colors.yellow;
   static const Color negro = Colors.black;
-  static const Color azul = Colors.blue;
-  static Color verdeClaro = Colors.green[200];
+  static  Color azul = Colors.blue[900];
+  static Color verdeOscuro = Colors.green[900];
   static Color morado = Colors.purple[300];
   static const Color naranja = Colors.orange;
   static const Color rosado = Colors.pink;
+  static const Color azulCielo = Colors.lightBlue;
 }

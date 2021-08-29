@@ -32,8 +32,35 @@ class HomeViewModel extends ChangeNotifier {
      equipo1.logoImage= logoImage;
      equipo1.color = color;
      equipo1.teamNumb = 1;
+     equipo1.carreras= 0;
+     equipo1.idEquipo= 1;
      this.equipo1 = equipo1;
       Navigator.pushNamed(context, 'seleccioneNombre');
+  }
+
+  goToLogoEquipo2(BuildContext context, String nombre,){
+     Equipo equipo= this.equipo1;
+     equipo.nombre = nombre;
+     this.equipo1 = equipo;
+      Navigator.pushNamed(context, 'seleccioneLogo2');
+  }
+
+  goToNombreEquipo2(BuildContext context, String logoImage, Color color){
+     Equipo equipo2= new Equipo();
+     equipo2.logoImage= logoImage;
+     equipo2.color = color;
+     equipo2.teamNumb = 2;
+     equipo2.idEquipo= 2;
+     equipo2.carreras=0;
+     this.equipo2 = equipo2;
+      Navigator.pushNamed(context, 'seleccioneNombre2');
+  }
+
+  goToConfiguracion(BuildContext context, String nombre,){
+     Equipo equipo= this.equipo2;
+     equipo.nombre = nombre;
+     this.equipo2 = equipo;
+     Navigator.pushNamed(context, 'configuracionPage');
   }
 
 }

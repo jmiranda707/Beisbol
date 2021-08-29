@@ -8,14 +8,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
-class SeleccioneNombrePage extends StatefulWidget {
-  const SeleccioneNombrePage({Key key}) : super(key: key);
+class SeleccioneNombre2Page extends StatefulWidget {
+  const SeleccioneNombre2Page({Key key}) : super(key: key);
 
   @override
-  _SeleccioneNombrePageState createState() => _SeleccioneNombrePageState();
+  _SeleccioneNombre2PageState createState() => _SeleccioneNombre2PageState();
 }
 
-class _SeleccioneNombrePageState extends State<SeleccioneNombrePage> {
+class _SeleccioneNombre2PageState extends State<SeleccioneNombre2Page> {
   var controller = TextEditingController();
   
   @override
@@ -32,7 +32,7 @@ class _SeleccioneNombrePageState extends State<SeleccioneNombrePage> {
 
   @override
   Widget build(BuildContext context) {
-   Equipo equipo= Provider.of<HomeViewModel>(context).equipo1;
+   Equipo equipo= Provider.of<HomeViewModel>(context).equipo2;
     ScreenUtil.init(context,
         width: SizesCustom.width,
         height: SizesCustom.height,
@@ -45,7 +45,7 @@ class _SeleccioneNombrePageState extends State<SeleccioneNombrePage> {
         backgroundColor: Colorz.rojo,
         title: Row(
           children: [
-            Text('EQUIPO 1: ', style: TextStyle(
+            Text('EQUIPO 2: ', style: TextStyle(
                                 fontSize: f(25),
                                 fontWeight: FontWeight.bold,
                                 color: Colorz.blanco)),
@@ -73,7 +73,7 @@ class _SeleccioneNombrePageState extends State<SeleccioneNombrePage> {
                   equipo.color),
                   SizedBox(height: w(30),),
                   Inputs(
-                    color: Colorz.negro,
+                    color: equipo.color,
                     controller: controller,
                     labelText: 'Texto',
                     maxlength: 10,
@@ -84,7 +84,7 @@ class _SeleccioneNombrePageState extends State<SeleccioneNombrePage> {
                 width: 400,
                 color: Colorz.rojo,
                 function: (){
-                  Provider.of<HomeViewModel>(context, listen: false).goToLogoEquipo2(context, controller.text);
+                  Provider.of<HomeViewModel>(context, listen: false).goToConfiguracion(context, controller.text);
                  
                 },
                 height: 60,

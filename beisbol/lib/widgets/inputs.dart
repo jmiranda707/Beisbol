@@ -27,7 +27,7 @@ class Inputs extends StatelessWidget {
       style: TextStyle(
         height: 1,
         fontSize: f(25),
-        color: Colorz.rojo
+        color: Colorz.negro
       ),
       onTap: () {},
       decoration: InputDecoration(

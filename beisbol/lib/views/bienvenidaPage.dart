@@ -26,22 +26,32 @@ class BienvenidaPage extends StatelessWidget {
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              SizedBox(height: w(160),),
-              Center(child: Text('Bienvenidos', style: TextStyle(
-                            fontSize: f(100),
-                            fontWeight: FontWeight.bold,
-                            color: Colorz.negro))),
-                            SizedBox(height: w(100),),
-              Center(child: Text('BEISBOL BÍBLICO', style: TextStyle(
-                            fontSize: f(130),
-                            fontWeight: FontWeight.bold,
-                            color: Colorz.amarillo))),
-                            SizedBox(height: w(190),),
+              SizedBox(
+                height: w(160),
+              ),
+              Center(
+                  child: Text('Bienvenidos',
+                      style: TextStyle(
+                          fontSize: f(100),
+                          fontWeight: FontWeight.bold,
+                          color: Colorz.negro))),
+              SizedBox(
+                height: w(100),
+              ),
+              Center(
+                  child: Text('BEISBOL BÍBLICO',
+                      style: TextStyle(
+                          fontSize: f(130),
+                          fontWeight: FontWeight.bold,
+                          color: Colorz.amarillo))),
+              SizedBox(
+                height: w(190),
+              ),
               CircularButton(
                 borderColor: Colorz.blanco,
                 width: 200,
                 color: Colorz.rojo,
-                function: (){
+                function: () {
                   Navigator.pushNamed(context, 'seleccioneLogo');
                 },
                 height: 60,
