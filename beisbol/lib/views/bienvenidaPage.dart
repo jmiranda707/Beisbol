@@ -15,21 +15,40 @@ class BienvenidaPage extends StatelessWidget {
         height: SizesCustom.height,
         allowFontScaling: false);
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+      body: Stack(
         children: [
-          Center(child: Text('Bienvenidos')),
-          Center(child: Text('BEISBOL BÍBLICO')),
-          CircularButton(
-            borderColor: Colorz.amarillo,
-            width: 200,
-            color: Colorz.verdeClaro,
-            function: (){
-              Navigator.pushNamed(context, 'seleccioneTeam');
-            },
-            height: 60,
-            nameButton: 'INGRESAR',
-          )
+          Image(
+            fit: BoxFit.fill,
+            width: double.infinity,
+            height: double.infinity,
+            image: AssetImage("assets/wallpapers/estadio.jpg"),
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              SizedBox(height: w(160),),
+              Center(child: Text('Bienvenidos', style: TextStyle(
+                            fontSize: f(100),
+                            fontWeight: FontWeight.bold,
+                            color: Colorz.negro))),
+                            SizedBox(height: w(100),),
+              Center(child: Text('BEISBOL BÍBLICO', style: TextStyle(
+                            fontSize: f(130),
+                            fontWeight: FontWeight.bold,
+                            color: Colorz.amarillo))),
+                            SizedBox(height: w(190),),
+              CircularButton(
+                borderColor: Colorz.blanco,
+                width: 200,
+                color: Colorz.rojo,
+                function: (){
+                  Navigator.pushNamed(context, 'seleccioneTeam');
+                },
+                height: 60,
+                nameButton: 'INGRESAR',
+              )
+            ],
+          ),
         ],
       ),
     );
