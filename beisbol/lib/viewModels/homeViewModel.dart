@@ -1,19 +1,39 @@
+import 'package:beisbol/models/equipoModel.dart';
+import 'package:beisbol/settings/persistence.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class HomeViewModel extends ChangeNotifier {
- /* bool _isLoading = false;
-  Usuario _userLogged;
+  Equipo _equipo1;
+  Equipo _equipo2;
 
   final prefs = new PersistenceLocal();
 
-  get userLogged {
-    return _userLogged;
+  get equipo1 {
+    return _equipo1;
   }
 
-  set userLogged(Usuario value) {
-    this._userLogged = value;
+  set equipo1(Equipo value) {
+    this._equipo1 = value;
     notifyListeners();
-  }*/
+  }
+
+  get equipo2 {
+    return _equipo2;
+  }
+
+  set equipo2(Equipo value) {
+    this._equipo2 = value;
+    notifyListeners();
+  }
+
+  goToNombreEquipo1(BuildContext context, String logoImage, Color color){
+     Equipo equipo1= new Equipo();
+     equipo1.logoImage= logoImage;
+     equipo1.color = color;
+     equipo1.teamNumb = 1;
+     this.equipo1 = equipo1;
+      Navigator.pushNamed(context, 'seleccioneNombre');
+  }
+
 }

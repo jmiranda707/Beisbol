@@ -42,7 +42,7 @@ class BienvenidaPage extends StatelessWidget {
                 width: 200,
                 color: Colorz.rojo,
                 function: (){
-                  Navigator.pushNamed(context, 'seleccioneTeam');
+                  Navigator.pushNamed(context, 'seleccioneLogo');
                 },
                 height: 60,
                 nameButton: 'INGRESAR',
