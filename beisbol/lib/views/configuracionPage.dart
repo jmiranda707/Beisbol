@@ -75,7 +75,7 @@ class _ConfiguracionPageState extends State<ConfiguracionPage> {
                   Provider.of<HomeViewModel>(context, listen: false).goToResultado(context);
                 },
                 height: 60,
-                nameButton: 'PLAY BALL',
+                nameButton: 'PLAYBALL',
               )
                 ],
             ),
