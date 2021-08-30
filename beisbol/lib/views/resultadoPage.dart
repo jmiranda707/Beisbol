@@ -21,7 +21,7 @@ class ResultadoPage extends StatelessWidget {
         height: SizesCustom.height,
         allowFontScaling: false);
     return Scaffold(
-      appBar: AppBar(
+    /*  appBar: AppBar(
         automaticallyImplyLeading: true,
         backgroundColor: Colorz.rojo,
         title: Row(
@@ -36,7 +36,7 @@ class ResultadoPage extends StatelessWidget {
                             color: Colorz.blanco,))*/
           ],
         ),
-      ),
+      ),*/
       body: Stack(
         children: [
           Image(
@@ -82,7 +82,7 @@ class ResultadoPage extends StatelessWidget {
                 width: 250,
                 color: Colorz.rojo,
                 function: (){
-                  Provider.of<HomeViewModel>(context, listen: false).goToResultado(context);
+                  Provider.of<HomeViewModel>(context, listen: false).goToPartido(context);
                 },
                 height: 60,
                 nameButton: 'CONTINUAR',

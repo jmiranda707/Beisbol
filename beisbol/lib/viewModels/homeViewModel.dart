@@ -109,4 +109,8 @@ class HomeViewModel extends ChangeNotifier {
      Navigator.pushNamed(context, 'resultadoPage');
   }
 
+  goToPartido(BuildContext context){
+     Navigator.pushReplacementNamed(context, 'partidoPage');
+  }
+
 }
