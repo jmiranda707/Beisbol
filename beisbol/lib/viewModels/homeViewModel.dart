@@ -1,5 +1,12 @@
+import 'dart:math';
+
 import 'package:beisbol/models/datosInningModel.dart';
 import 'package:beisbol/models/equipoModel.dart';
+import 'package:beisbol/models/libroModel.dart';
+import 'package:beisbol/models/preguntaModel.dart';
+import 'package:beisbol/models/preguntaModel.dart';
+import 'package:beisbol/services/libros.dart';
+import 'package:beisbol/services/preguntas.dart';
 import 'package:beisbol/settings/persistence.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -10,9 +17,39 @@ class HomeViewModel extends ChangeNotifier {
   DatosInning _datos;
   int _timeSelected = 90;
   int _inningSelected = 7;
+  Libro _libro;
+  List<Pregunta> _allPreguntas = [];
+  Pregunta _preguntaSelected;
 
   final prefs = new PersistenceLocal();
   
+  get preguntaSelected {
+    return _preguntaSelected;
+  }
+
+  set preguntaSelected(Pregunta value) {
+    this._preguntaSelected = value;
+    notifyListeners();
+  }
+
+  get allPreguntas {
+    return _allPreguntas;
+  }
+
+  set allPreguntas(List<Pregunta> value) {
+    this._allPreguntas = value;
+    notifyListeners();
+  }
+
+  get libro {
+    return _libro;
+  }
+
+  set libro(Libro value) {
+    this._libro = value;
+    notifyListeners();
+  }
+
   get inningSelected {
     return _inningSelected;
   }
@@ -96,6 +133,9 @@ class HomeViewModel extends ChangeNotifier {
   }
 
   goToResultado(BuildContext context){
+     Libro libro = LibrosConst.libros.where((i) => i.idLibro == 1).first;// esto se debe seleccionar antes en un listado
+     List<Pregunta> preguntas =  PreguntasConst.preguntas.where((i) => i.idLibro == libro.idLibro).toList();
+     this.allPreguntas= preguntas;
      DatosInning datos = new DatosInning();
      datos.inningActual = 1;
      datos.outs = 0;
@@ -111,6 +151,89 @@ class HomeViewModel extends ChangeNotifier {
 
   goToPartido(BuildContext context){
      Navigator.pushReplacementNamed(context, 'partidoPage');
+  }
+
+  picharPregunta(){
+    List<Pregunta> preguntas = this.allPreguntas;
+    final random = new Random();
+    Pregunta pregunta = preguntas[random.nextInt(preguntas.length)];
+    this.preguntaSelected = pregunta;
+  }
+
+  respuestaIncorrecta(BuildContext context){
+
+  }
+
+  respuestaCorrecta(Pregunta pregunta, BuildContext context){
+      int valorBateado = pregunta.valor;
+       DatosInning datos = this.datos;
+       Equipo equipo = (datos.abriendoCerrando=='abriendo')? this.equipo1: this.equipo2;
+       //////Hombre en Tercera
+      if(datos.terceraBusy){
+        equipo.carreras= equipo.carreras + 1;
+        datos.terceraBusy= false;
+        this.datos= datos;
+        //TODO: MOSTRAR UN GIF DE CELEBRACION
+        // TODO: COLOCAR UN AUDIO
+      }
+      //////////hombre en segunda
+      if(datos.segundaBusy){
+         if(2 + valorBateado>= 4){
+           equipo.carreras= equipo.carreras + 1;
+           datos.segundaBusy = false;
+           this.datos= datos;
+           //TODO: MOSTRAR UN GIF DE CELEBRACION
+        // TODO: COLOCAR UN AUDIO
+         }
+         else if(2+valorBateado == 3){
+           datos.segundaBusy = false;
+           datos.terceraBusy = true;
+           this.datos= datos;
+         }
+      }
+      ///////hombre en primera
+      if(datos.primeraBusy){
+        if(1 + valorBateado >= 4){
+           equipo.carreras= equipo.carreras + 1;
+           datos.primeraBusy = false;
+           this.datos= datos;
+           //TODO: MOSTRAR UN GIF DE CELEBRACION
+        // TODO: COLOCAR UN AUDIO
+         }
+         else if(1 + valorBateado == 3){
+           datos.primeraBusy = false;
+           datos.terceraBusy = true;
+           this.datos= datos;
+         }
+         else if(1 + valorBateado == 2){
+           datos.primeraBusy = false;
+           datos.segundaBusy = true;
+           this.datos= datos;
+         }
+      }
+      ////// bateador
+         if(valorBateado >= 4){
+           equipo.carreras= equipo.carreras + 1;
+           this.datos= datos;
+           //TODO: MOSTRAR UN GIF DE CELEBRACION
+        // TODO: COLOCAR UN AUDIO
+         }
+         else if(valorBateado == 3){
+           datos.terceraBusy = true;
+           this.datos= datos;
+         }
+         else if(valorBateado == 2){
+           datos.segundaBusy = true;
+           this.datos= datos;
+         }
+         else if(valorBateado == 1){
+           datos.primeraBusy = true;
+           this.datos= datos;
+         }
+      ///eliminar la pregunta del listado
+      List<Pregunta> preguntas= this.allPreguntas;
+      preguntas.removeWhere((i) => i.idPregunta== pregunta.idPregunta);
+      this.allPreguntas = preguntas;
   }
 
 }

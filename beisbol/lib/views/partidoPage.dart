@@ -51,6 +51,14 @@ class _PartidoPageState extends State<PartidoPage> {
           ],
         ),
       ),*/
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colorz.azulCielo,
+
+        onPressed: (){
+          Provider.of<HomeViewModel>(context, listen: false).picharPregunta();
+        },
+        child: Icon(Icons.help_outline_sharp),
+        ),
       body: Stack(
         children: [
           Image(
@@ -75,6 +83,22 @@ class _PartidoPageState extends State<PartidoPage> {
               iconColor: Colorz.amarillo,
             ),
           ),
+          /*Positioned(
+            bottom: w(100),
+            left: (MediaQuery.of(context).size.width / 2) - w(125),
+            child: IconRectangularButton(
+              borderColor: Colorz.blanco,
+              width: 250,
+              color: Colorz.azulCielo,
+              function: () {
+                Provider.of<HomeViewModel>(context, listen: false).picharPregunta();
+              },
+              height: 60,
+              nameButton: 'SIGUIENTE PREGUNTA',
+              icon: Icons.sports_baseball,
+              iconColor: Colorz.blanco,
+            ),
+          ),*/
           Positioned(
             bottom: w(100),
             left: (MediaQuery.of(context).size.width / 2) - w(125),
