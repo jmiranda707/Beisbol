@@ -21,9 +21,19 @@ class HomeViewModel extends ChangeNotifier {
   List<Pregunta> _allPreguntas = [];
   Pregunta _preguntaSelected;
   bool _showPregunta = false;
+  String _mensajeAnimado = '';
 
   final prefs = new PersistenceLocal();
   
+  get mensajeAnimado {
+    return _mensajeAnimado;
+  }
+
+  set mensajeAnimado(String value) {
+    this._mensajeAnimado = value;
+    notifyListeners();
+  }
+
   get showPregunta {
     return _showPregunta;
   }
@@ -156,6 +166,8 @@ class HomeViewModel extends ChangeNotifier {
      datos.totalInnings = this.inningSelected;
      datos.abriendoCerrando = 'abriendo'; //cerrando
      this.datos = datos;
+     this.equipo1.carreras= 0;
+     this.equipo2.carreras=0;
      Navigator.pushNamed(context, 'resultadoPage');
   }
 
@@ -165,10 +177,17 @@ class HomeViewModel extends ChangeNotifier {
 
   picharPregunta(){
     List<Pregunta> preguntas = this.allPreguntas;
-    final random = new Random();
+    if(preguntas.length>0){
+       final random = new Random();
     Pregunta pregunta = preguntas[random.nextInt(preguntas.length)];
     this.preguntaSelected = pregunta;
     this.showPregunta= true;
+    }
+    else{
+      //TODO: VERIFICAR CUAL EQUIPO TIENE MAS CARRERAS
+      //se han agotado las preguntas... el equipo x gana el juego
+    }
+    
   }
 
    timeOver(BuildContext context){
@@ -176,11 +195,15 @@ class HomeViewModel extends ChangeNotifier {
      this.respuestaIncorrecta(context);
    }
 
-   respuestaIncorrecta(BuildContext context){
+   Future<void> respuestaIncorrecta(BuildContext context)async{
      this.showPregunta= false;
-     //TODO: MOSTRAR GIF DE OUT 5 SEGUNDOS
-      DatosInning datos= this.datos;
+     DatosInning datos= this.datos;
       datos.outs= datos.outs + 1;
+     this.mensajeAnimado = '${datos.outs} OUTS!!';
+     await Future.delayed( Duration(seconds: 6), () {
+           this.mensajeAnimado = '';
+      });
+      
       datos.time= this.timeSelected;
       if(datos.outs==3){
         if(datos.inningActual==datos.totalInnings && datos.abriendoCerrando=='cerrando'){

@@ -56,10 +56,10 @@ class PreguntasConst {
       idLibro: 1,
       idPregunta: 6,
       contestada: false,
-      pregunta: '''¿Cómo se describe a Tito en "Tito 1:4"?/n'''
-      '''A) Creyente fiel y amado por Dios./n'''
-      '''B) Interprete de la ley./n'''
-      '''C) Varón prudente, integro, serio, sano e ireprochable./n'''
+      pregunta: '''¿Cómo se describe a Tito en "Tito 1:4"?\n'''
+      '''A) Creyente fiel y amado por Dios.\n'''
+      '''B) Interprete de la ley.\n'''
+      '''C) Varón prudente, integro, serio, sano e ireprochable.\n'''
       '''D) Verdadero hijo en la común fé.''',
       cita: 'Tito 1:4',
       respuesta: 'D',
@@ -91,7 +91,7 @@ class PreguntasConst {
       contestada: false,
       pregunta: 'Diga las 2 razones por la cual Pablo dejó a Tito en Creta',
       cita: 'Tito 1:5',
-      respuesta: '1. Corregir lo deficiente./n 2. Establecer ancianos en cada ciudad.',
+      respuesta: '1. Corregir lo deficiente.\n 2. Establecer ancianos en cada ciudad.',
       valor: 4,
     ),
     Pregunta(

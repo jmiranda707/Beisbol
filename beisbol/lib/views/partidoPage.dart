@@ -1,5 +1,7 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:beisbol/models/datosInningModel.dart';
 import 'package:beisbol/models/equipoModel.dart';
+import 'package:beisbol/models/preguntaModel.dart';
 import 'package:beisbol/settings/colorz.dart';
 import 'package:beisbol/settings/responsive.dart';
 import 'package:beisbol/viewModels/homeViewModel.dart';
@@ -28,29 +30,18 @@ class _PartidoPageState extends State<PartidoPage> {
     Equipo equipo2 = Provider.of<HomeViewModel>(context).equipo2;
     DatosInning datos = Provider.of<HomeViewModel>(context).datos;
     bool showPregunta = Provider.of<HomeViewModel>(context).showPregunta;
+    Pregunta pregunta= Provider.of<HomeViewModel>(context).preguntaSelected;
+     String mensajeAnimado = Provider.of<HomeViewModel>(context).mensajeAnimado;
     Equipo equipoAlBate =
         (datos.abriendoCerrando == 'abriendo') ? equipo1 : equipo2;
+   /* _isPause= (showPregunta)?true: false;
+    (showPregunta)?controller.resume(): controller.pause();*/
     ScreenUtil.init(context,
         width: SizesCustom.width,
         height: SizesCustom.height,
         allowFontScaling: false);
     return Scaffold(
-      /*  appBar: AppBar(
-        automaticallyImplyLeading: true,
-        backgroundColor: Colorz.rojo,
-        title: Row(
-          children: [
-            Text('Resultado ', style: TextStyle(
-                                fontSize: f(25),
-                                fontWeight: FontWeight.bold,
-                                color: Colorz.blanco)),
-                               /* Text('Seleccione Logo del Equipo', style: TextStyle(
-                            fontSize: f(25),
-                            fontWeight: FontWeight.bold,
-                            color: Colorz.blanco,))*/
-          ],
-        ),
-      ),*/
+     
       floatingActionButton: Container(
         width:  w(150),
         height:  w(150),
@@ -79,8 +70,12 @@ class _PartidoPageState extends State<PartidoPage> {
               borderColor: Colorz.blanco,
               width: 250,
               color: Colorz.verdeOscuro,
-              function: () {
-                Provider.of<HomeViewModel>(context, listen: false).respuestaCorrecta(null,context);
+              function: () async{
+                
+               await Provider.of<HomeViewModel>(context, listen: false).respuestaCorrecta(pregunta ,context);
+               setState(() {
+                                _isPause = true;
+                              });
               },
               height: 60,
               nameButton: 'CORRECTO',
@@ -88,22 +83,7 @@ class _PartidoPageState extends State<PartidoPage> {
               iconColor: Colorz.amarillo,
             ),
           ):Offstage(),
-          /*Positioned(
-            bottom: w(100),
-            left: (MediaQuery.of(context).size.width / 2) - w(125),
-            child: IconRectangularButton(
-              borderColor: Colorz.blanco,
-              width: 250,
-              color: Colorz.azulCielo,
-              function: () {
-                Provider.of<HomeViewModel>(context, listen: false).picharPregunta();
-              },
-              height: 60,
-              nameButton: 'SIGUIENTE PREGUNTA',
-              icon: Icons.sports_baseball,
-              iconColor: Colorz.blanco,
-            ),
-          ),*/
+         
           (showPregunta)?Positioned(
             bottom: w(100),
             left: (MediaQuery.of(context).size.width / 2) - w(125),
@@ -111,8 +91,12 @@ class _PartidoPageState extends State<PartidoPage> {
               borderColor: Colorz.blanco,
               width: 250,
               color: Colorz.rojo,
-              function: () {
-                Provider.of<HomeViewModel>(context, listen: false).respuestaIncorrecta(context);
+              function: () async{
+               
+                await Provider.of<HomeViewModel>(context, listen: false).respuestaIncorrecta(context);
+                setState(() {
+                                _isPause = true;
+                              });
               },
               height: 60,
               nameButton: 'INCORRECTO',
@@ -152,25 +136,25 @@ class _PartidoPageState extends State<PartidoPage> {
                   _rowEquipo(equipo2),
                 ],
               )),
-          Positioned(
-              top: w(50),
-              right: w(80),
+           (showPregunta)?Positioned(
+              top: w(20),
+              right: w(40),
               child: Countdown(
                 seconds: datos.time,
                 build: (BuildContext context, double time) {
                   final IconData buttonIcon = _isRestart
-                      ? Icons.refresh
-                      : (_isPause ? Icons.pause : Icons.play_arrow);
+                      ? Icons.refresh_rounded
+                      : (_isPause ? Icons.pause_circle_filled : Icons.play_circle_fill);
                   return Column(
                     children: [
                       Text('Tiempo',
                           style: TextStyle(
-                              color: Colorz.blanco,
+                              color: Colorz.negro,
                               fontSize: f(70),
                               fontWeight: FontWeight.bold)),
                       Text(time.toString(),
                           style: TextStyle(
-                              color: Colorz.rojo,
+                              color: Colors.red[900],
                               fontSize: f(100),
                               fontWeight: FontWeight.bold)),
                       InkWell(
@@ -195,7 +179,7 @@ class _PartidoPageState extends State<PartidoPage> {
                             }
                           },
                           child: Icon(buttonIcon,
-                              size: w(100), color: Colorz.amarillo))
+                              size: w(100), color: Colorz.negro))
                     ],
                   );
                 },
@@ -208,7 +192,74 @@ class _PartidoPageState extends State<PartidoPage> {
                   //  Provider.of<HomeViewModel>(context, listen: false).timeOver(context);
                   });
                 },
-              ))
+              )):Offstage(),
+              (showPregunta)?Center(
+                child: Container(
+                 // margin: EdgeInsets.symmetric(horizontal: w(390)),
+                   width: w(1100),
+                   height: w(400),
+                   color: Colorz.negro.withOpacity(0.96),
+                   padding: EdgeInsets.all(w(10)),
+                  child: 
+                SingleChildScrollView(
+                                  child: Center(
+                    child: Text('${pregunta.cita}\n${pregunta.pregunta}',
+                    textAlign: TextAlign.center,
+              style: TextStyle(
+                      color: Colorz.blanco,
+                      fontSize: f(40),
+                      fontWeight: FontWeight.bold)),
+                  ),
+                )
+                ,)
+              ):Offstage(),
+
+             (mensajeAnimado=='')?Offstage(): Center(
+               child: SizedBox(
+  width: w(600),
+  child: ScaleAnimatedTextKit(
+    onTap: () {
+        //print("Tap Event");
+      },
+    text: [
+      mensajeAnimado
+      ],
+    textStyle: TextStyle(
+        fontSize: f(150),
+        fontFamily: "Canterbury",
+        fontWeight: FontWeight.bold,
+        color: Colorz.rojo,
+    ),
+    textAlign: TextAlign.start,
+    isRepeatingAnimation: true,
+  ),
+),
+             ),
+
+             Center(
+               child: SizedBox(
+  width: w(800),
+  child: ColorizeAnimatedTextKit(
+    onTap: () {
+      },
+    text: [
+      'HOME RUN'
+    ],
+    textStyle: TextStyle(
+        fontSize: f(150),
+        fontFamily: "Horizon",
+        fontWeight: FontWeight.bold,
+    ),
+    colors: [
+      Colors.purple,
+      Colors.blue,
+      Colors.yellow,
+      Colors.red,
+    ],
+    textAlign: TextAlign.start,
+  ),
+),
+             )
         ],
       ),
     );
@@ -217,7 +268,7 @@ class _PartidoPageState extends State<PartidoPage> {
   _baseWidget(bool isBusy, Color color) {
     return new Transform(
       child: Icon(Icons.stop,
-          size: w(170), color: (isBusy) ? color : Colorz.blanco),
+          size: w(170), color: (isBusy) ? color : Colorz.negro),
       alignment: FractionalOffset.center,
       transform: new Matrix4.identity()..rotateZ(45 * 3.1415927 / 180),
     );

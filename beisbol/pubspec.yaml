@@ -36,6 +36,7 @@ dependencies:
   syncfusion_flutter_sliders: ^18.4.49-beta
   direct_select: ^1.1.0
   timer_count_down: ^1.0.4+1
+  animated_text_kit: ^3.1.2
 
 dev_dependencies:
   flutter_test:
