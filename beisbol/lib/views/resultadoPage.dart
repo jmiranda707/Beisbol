@@ -63,7 +63,7 @@ class ResultadoPage extends StatelessWidget {
                    )
                  ),
                  Container(
-                   margin: EdgeInsets.symmetric(horizontal: w(400)),
+                   margin: EdgeInsets.symmetric(horizontal: w(390)),
                    color: Colorz.negro.withOpacity(0.75),
                    padding: EdgeInsets.all(w(10)),
                    child: Column(
@@ -132,7 +132,7 @@ class ResultadoPage extends StatelessWidget {
           ),
                     SizedBox(width: w(5)),
                    Container(
-                     width: w(400),
+                     width: w(430),
                      child: Text(equipo.nombre, style: TextStyle(color: Colorz.blanco, fontSize: f(80), fontWeight: FontWeight.bold))),
                      Container(
                        width: w(190),

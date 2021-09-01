@@ -27,7 +27,7 @@ class _PartidoPageState extends State<PartidoPage> {
     Equipo equipo1 = Provider.of<HomeViewModel>(context).equipo1;
     Equipo equipo2 = Provider.of<HomeViewModel>(context).equipo2;
     DatosInning datos = Provider.of<HomeViewModel>(context).datos;
-
+    bool showPregunta = Provider.of<HomeViewModel>(context).showPregunta;
     Equipo equipoAlBate =
         (datos.abriendoCerrando == 'abriendo') ? equipo1 : equipo2;
     ScreenUtil.init(context,
@@ -51,23 +51,28 @@ class _PartidoPageState extends State<PartidoPage> {
           ],
         ),
       ),*/
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colorz.azulCielo,
+      floatingActionButton: Container(
+        width:  w(150),
+        height:  w(150),
+        child: FloatingActionButton(
+          
+          backgroundColor: Colorz.blanco,
 
-        onPressed: (){
-          Provider.of<HomeViewModel>(context, listen: false).picharPregunta();
-        },
-        child: Icon(Icons.help_outline_sharp),
-        ),
+          onPressed: (){
+            Provider.of<HomeViewModel>(context, listen: false).picharPregunta();
+          },
+          child: Icon(Icons.help, size: w(150), color: Colorz.azulCielo),
+          ),
+      ),
       body: Stack(
         children: [
           Image(
             fit: BoxFit.fill,
             width: double.infinity,
             height: double.infinity,
-            image: AssetImage("assets/wallpapers/resultados.jpeg"),
+            image: AssetImage("assets/wallpapers/partido2.jpg"),
           ),
-          Positioned(
+          (showPregunta)?Positioned(
             bottom: w(180),
             left: (MediaQuery.of(context).size.width / 2) - w(125),
             child: IconRectangularButton(
@@ -75,14 +80,14 @@ class _PartidoPageState extends State<PartidoPage> {
               width: 250,
               color: Colorz.verdeOscuro,
               function: () {
-                //Provider.of<HomeViewModel>(context, listen: false).goToPartido(context);
+                Provider.of<HomeViewModel>(context, listen: false).respuestaCorrecta(null,context);
               },
               height: 60,
               nameButton: 'CORRECTO',
               icon: Icons.check_circle,
               iconColor: Colorz.amarillo,
             ),
-          ),
+          ):Offstage(),
           /*Positioned(
             bottom: w(100),
             left: (MediaQuery.of(context).size.width / 2) - w(125),
@@ -99,7 +104,7 @@ class _PartidoPageState extends State<PartidoPage> {
               iconColor: Colorz.blanco,
             ),
           ),*/
-          Positioned(
+          (showPregunta)?Positioned(
             bottom: w(100),
             left: (MediaQuery.of(context).size.width / 2) - w(125),
             child: IconRectangularButton(
@@ -107,14 +112,14 @@ class _PartidoPageState extends State<PartidoPage> {
               width: 250,
               color: Colorz.rojo,
               function: () {
-                //Provider.of<HomeViewModel>(context, listen: false).goToPartido(context);
+                Provider.of<HomeViewModel>(context, listen: false).respuestaIncorrecta(context);
               },
               height: 60,
               nameButton: 'INCORRECTO',
               icon: Icons.cancel,
               iconColor: Colorz.blanco,
             ),
-          ),
+          ):Offstage(),
           Positioned(
             top: w(70),
             left: w(35),
@@ -151,7 +156,7 @@ class _PartidoPageState extends State<PartidoPage> {
               top: w(50),
               right: w(80),
               child: Countdown(
-                seconds: 20,
+                seconds: datos.time,
                 build: (BuildContext context, double time) {
                   final IconData buttonIcon = _isRestart
                       ? Icons.refresh
@@ -200,6 +205,7 @@ class _PartidoPageState extends State<PartidoPage> {
                   print('Tiempo Agotado');
                   setState(() {
                     _isRestart = true;
+                  //  Provider.of<HomeViewModel>(context, listen: false).timeOver(context);
                   });
                 },
               ))

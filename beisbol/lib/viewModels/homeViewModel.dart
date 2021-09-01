@@ -20,9 +20,19 @@ class HomeViewModel extends ChangeNotifier {
   Libro _libro;
   List<Pregunta> _allPreguntas = [];
   Pregunta _preguntaSelected;
+  bool _showPregunta = false;
 
   final prefs = new PersistenceLocal();
   
+  get showPregunta {
+    return _showPregunta;
+  }
+
+  set showPregunta(bool value) {
+    this._showPregunta = value;
+    notifyListeners();
+  }
+
   get preguntaSelected {
     return _preguntaSelected;
   }
@@ -158,13 +168,51 @@ class HomeViewModel extends ChangeNotifier {
     final random = new Random();
     Pregunta pregunta = preguntas[random.nextInt(preguntas.length)];
     this.preguntaSelected = pregunta;
+    this.showPregunta= true;
   }
 
-  respuestaIncorrecta(BuildContext context){
+   timeOver(BuildContext context){
+       //mostrar gif con tiempo acabo 
+     this.respuestaIncorrecta(context);
+   }
 
-  }
+   respuestaIncorrecta(BuildContext context){
+     this.showPregunta= false;
+     //TODO: MOSTRAR GIF DE OUT 5 SEGUNDOS
+      DatosInning datos= this.datos;
+      datos.outs= datos.outs + 1;
+      datos.time= this.timeSelected;
+      if(datos.outs==3){
+        if(datos.inningActual==datos.totalInnings && datos.abriendoCerrando=='cerrando'){
+          //navego a la ventana de fin
+        }
+        else{
+         
+        //reinicio los contadores
+        datos.outs=0;
+        if(datos.abriendoCerrando=='abriendo'){
+          datos.abriendoCerrando='cerrando';
+        }else{
+          datos.abriendoCerrando='abriendo';
+          datos.inningActual = datos.inningActual + 1;
+        }
+        datos.primeraBusy= false;
+        datos.segundaBusy= false;
+        datos.terceraBusy= false;
+        
+        Navigator.pushReplacementNamed(context, 'resultadoPage');
+        
+        
+        }
+        
+      }
+      else{
+        this.datos= datos;
+      }
+   }
 
   respuestaCorrecta(Pregunta pregunta, BuildContext context){
+      this.showPregunta= false;
       int valorBateado = pregunta.valor;
        DatosInning datos = this.datos;
        Equipo equipo = (datos.abriendoCerrando=='abriendo')? this.equipo1: this.equipo2;
