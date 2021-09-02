@@ -32,6 +32,8 @@ class _PartidoPageState extends State<PartidoPage> {
     bool showPregunta = Provider.of<HomeViewModel>(context).showPregunta;
     Pregunta pregunta= Provider.of<HomeViewModel>(context).preguntaSelected;
      String mensajeAnimado = Provider.of<HomeViewModel>(context).mensajeAnimado;
+      List<String> mensajeCorrecto = Provider.of<HomeViewModel>(context).mensajeCorrecto;
+      List<Pregunta> allPreguntas = Provider.of<HomeViewModel>(context).allPreguntas;
     Equipo equipoAlBate =
         (datos.abriendoCerrando == 'abriendo') ? equipo1 : equipo2;
    /* _isPause= (showPregunta)?true: false;
@@ -62,6 +64,15 @@ class _PartidoPageState extends State<PartidoPage> {
             width: double.infinity,
             height: double.infinity,
             image: AssetImage("assets/wallpapers/partido2.jpg"),
+          ),
+          Positioned(
+            bottom: w(180),
+            right: w(50),
+                      child: CircleAvatar(
+            radius: w(50),
+            backgroundColor: Colors.blue[900],
+            child: Center(child: Text(allPreguntas.length.toString(), style: TextStyle(fontSize: f(50), color: Colorz.blanco))),
+            ),
           ),
           (showPregunta)?Positioned(
             bottom: w(180),
@@ -185,12 +196,13 @@ class _PartidoPageState extends State<PartidoPage> {
                 },
                 controller: controller,
                 interval: Duration(milliseconds: 100),
-                onFinished: () {
-                  print('Tiempo Agotado');
-                  setState(() {
-                    _isRestart = true;
-                  //  Provider.of<HomeViewModel>(context, listen: false).timeOver(context);
-                  });
+                onFinished: () async{
+                  
+                    await Provider.of<HomeViewModel>(context, listen: false).timeOver(context);
+                    setState(() {
+                                _isPause = true;
+                              });
+                 
                 },
               )):Offstage(),
               (showPregunta)?Center(
@@ -198,7 +210,7 @@ class _PartidoPageState extends State<PartidoPage> {
                  // margin: EdgeInsets.symmetric(horizontal: w(390)),
                    width: w(1100),
                    height: w(400),
-                   color: Colorz.negro.withOpacity(0.96),
+                   color: Colorz.negro.withOpacity(0.98),
                    padding: EdgeInsets.all(w(10)),
                   child: 
                 SingleChildScrollView(
@@ -230,21 +242,20 @@ class _PartidoPageState extends State<PartidoPage> {
         fontWeight: FontWeight.bold,
         color: Colorz.rojo,
     ),
-    textAlign: TextAlign.start,
-    isRepeatingAnimation: true,
+    textAlign: TextAlign.center,
+    isRepeatingAnimation: false,
   ),
 ),
              ),
 
-             Center(
-               child: SizedBox(
-  width: w(800),
+            (mensajeCorrecto.length==0)?Offstage(): Center(
+               child: Container(
+                 color: Colorz.negro,
+  width: w(850),
   child: ColorizeAnimatedTextKit(
     onTap: () {
       },
-    text: [
-      'HOME RUN'
-    ],
+    text:mensajeCorrecto,
     textStyle: TextStyle(
         fontSize: f(150),
         fontFamily: "Horizon",
@@ -253,10 +264,13 @@ class _PartidoPageState extends State<PartidoPage> {
     colors: [
       Colors.purple,
       Colors.blue,
+      Colors.green,
       Colors.yellow,
+      Colors.orange,
       Colors.red,
     ],
-    textAlign: TextAlign.start,
+    textAlign: TextAlign.center,
+    isRepeatingAnimation: false,
   ),
 ),
              )

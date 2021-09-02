@@ -22,9 +22,19 @@ class HomeViewModel extends ChangeNotifier {
   Pregunta _preguntaSelected;
   bool _showPregunta = false;
   String _mensajeAnimado = '';
+  List<String> _mensajeCorrecto = [];
 
   final prefs = new PersistenceLocal();
   
+  get mensajeCorrecto {
+    return _mensajeCorrecto;
+  }
+
+  set mensajeCorrecto(List<String> value) {
+    this._mensajeCorrecto = value;
+    notifyListeners();
+  }
+
   get mensajeAnimado {
     return _mensajeAnimado;
   }
@@ -234,10 +244,12 @@ class HomeViewModel extends ChangeNotifier {
       }
    }
 
-  respuestaCorrecta(Pregunta pregunta, BuildContext context){
+  respuestaCorrecta(Pregunta pregunta, BuildContext context) async{
       this.showPregunta= false;
       int valorBateado = pregunta.valor;
        DatosInning datos = this.datos;
+        int seconds= 10;
+      
        Equipo equipo = (datos.abriendoCerrando=='abriendo')? this.equipo1: this.equipo2;
        //////Hombre en Tercera
       if(datos.terceraBusy){
@@ -305,6 +317,46 @@ class HomeViewModel extends ChangeNotifier {
       List<Pregunta> preguntas= this.allPreguntas;
       preguntas.removeWhere((i) => i.idPregunta== pregunta.idPregunta);
       this.allPreguntas = preguntas;
+
+
+       if(valorBateado==4){
+         List<String> mensajes= [];
+         mensajes.add('¡¡Que Batazo!!');
+         mensajes.add('es un...');
+         mensajes.add('¡HOME RUN!');
+         mensajes.add('¡HOME RUN!');
+         mensajes.add('${this.equipo1.carreras} - ${this.equipo2.carreras}');
+         this.mensajeCorrecto = mensajes;
+         seconds= 14;
+       }
+       if(valorBateado==3){
+         List<String> mensajes= [];
+         mensajes.add('¡¡WAOOH!!');
+         mensajes.add('llegó hasta tercera...');
+         mensajes.add('¡TRIPLE!');
+         this.mensajeCorrecto = mensajes;
+
+         seconds= 10;
+       }
+       if(valorBateado==2){
+         List<String> mensajes= [];
+         mensajes.add('¡¡Que Batazo!!');
+         mensajes.add('pero es un...');
+         mensajes.add('¡DOBLE!');
+         this.mensajeCorrecto = mensajes;
+         seconds= 10;
+       }
+       if(valorBateado==1){
+         List<String> mensajes= [];
+         mensajes.add('HIT!!');
+         mensajes.add('HIT...');
+         mensajes.add('¡¡HIT!!');
+         this.mensajeCorrecto = mensajes;
+         seconds= 10;
+       }
+       await Future.delayed( Duration(seconds: seconds), () {
+       this.mensajeCorrecto = [];
+      });
   }
 
 }

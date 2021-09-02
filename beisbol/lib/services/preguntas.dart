@@ -63,7 +63,7 @@ class PreguntasConst {
       '''D) Verdadero hijo en la común fé.''',
       cita: 'Tito 1:4',
       respuesta: 'D',
-      valor: 2,
+      valor: 1,
     ),
     //triples
     Pregunta(
