@@ -3,12 +3,36 @@ import 'package:beisbol/settings/responsive.dart';
 import 'package:beisbol/widgets/botones.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:audioplayers/audio_cache.dart';
 
-class BienvenidaPage extends StatelessWidget {
+class BienvenidaPage extends StatefulWidget {
   const BienvenidaPage({Key key}) : super(key: key);
+  
+  
+
+  @override
+  _BienvenidaPageState createState() => _BienvenidaPageState();
+}
+
+class _BienvenidaPageState extends State<BienvenidaPage> {
+
+  @override
+  void initState() { 
+     playLocal();
+    super.initState();
+  }
+
+  playLocal() async {
+    final player= AudioCache();
+    await player.play('audios/fanaticada.mp3',);
+    
+  }
 
   @override
   Widget build(BuildContext context) {
+  
+         
+       
     getSizeDevice(context);
     ScreenUtil.init(context,
         width: SizesCustom.width,
@@ -59,8 +83,10 @@ class BienvenidaPage extends StatelessWidget {
               )
             ],
           ),
+           
         ],
       ),
     );
+   
   }
 }

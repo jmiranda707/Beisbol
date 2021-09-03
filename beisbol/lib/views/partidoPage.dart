@@ -65,6 +65,7 @@ class _PartidoPageState extends State<PartidoPage> {
             height: double.infinity,
             image: AssetImage("assets/wallpapers/partido2.jpg"),
           ),
+          
           Positioned(
             bottom: w(180),
             right: w(50),
@@ -115,6 +116,23 @@ class _PartidoPageState extends State<PartidoPage> {
               iconColor: Colorz.blanco,
             ),
           ):Offstage(),
+          Positioned(
+            top: w(20),
+            left: w(35),
+                      child: Container(
+                        width: w(600),
+                        height: w(270),
+              margin: EdgeInsets.symmetric(horizontal: w(0)),
+                     
+                     padding: EdgeInsets.all(w(10)),
+                     decoration: new BoxDecoration(
+                       color: Colorz.negro.withOpacity(0.75),
+                       borderRadius: BorderRadius.circular(w(80)),
+ 
+  )
+            ),
+          ),
+
           Positioned(
             top: w(70),
             left: w(35),
@@ -227,7 +245,8 @@ class _PartidoPageState extends State<PartidoPage> {
               ):Offstage(),
 
              (mensajeAnimado=='')?Offstage(): Center(
-               child: SizedBox(
+               child: Container(
+                 color: Colorz.negro,
   width: w(600),
   child: ScaleAnimatedTextKit(
     onTap: () {
@@ -243,7 +262,7 @@ class _PartidoPageState extends State<PartidoPage> {
         color: Colorz.rojo,
     ),
     textAlign: TextAlign.center,
-    isRepeatingAnimation: false,
+    isRepeatingAnimation: true,
   ),
 ),
              ),
@@ -282,7 +301,7 @@ class _PartidoPageState extends State<PartidoPage> {
   _baseWidget(bool isBusy, Color color) {
     return new Transform(
       child: Icon(Icons.stop,
-          size: w(170), color: (isBusy) ? color : Colorz.negro),
+          size: w(170), color: (isBusy) ? color : Colorz.blanco),
       alignment: FractionalOffset.center,
       transform: new Matrix4.identity()..rotateZ(45 * 3.1415927 / 180),
     );
@@ -316,11 +335,11 @@ class _PartidoPageState extends State<PartidoPage> {
 
   _rowInning(DatosInning datos) {
     return Container(
-      width: w(285),
+      width: w(295),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          SizedBox(width: w(100)),
+          SizedBox(width: w(70)),
           
           SizedBox(width: w(20)),
          (datos.outs>=1)? Icon(Icons.sports_baseball, size: w(40), color: Colorz.blanco): Offstage(),

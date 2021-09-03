@@ -40,11 +40,6 @@ class _ConfiguracionPageState extends State<ConfiguracionPage> {
                     fontSize: f(25),
                     fontWeight: FontWeight.bold,
                     color: Colorz.blanco)),
-            /*Text('Seleccione Logo del Equipo',
-                style: TextStyle(
-                    fontSize: f(25),
-                    fontWeight: FontWeight.bold,
-                    color: Colorz.blanco))*/
           ],
         ),
       ),

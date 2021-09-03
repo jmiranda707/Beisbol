@@ -15,7 +15,7 @@ class Slide extends StatefulWidget {
 
 class _SlideState extends State<Slide> {
   PersistenceLocal prefs = new PersistenceLocal();
-  double value = 3.0;
+  double value = 7.0;
  
   @override
   void initState() {
@@ -85,7 +85,7 @@ class SlideTime extends StatefulWidget {
 
 class _SlideTimeState extends State<SlideTime> {
   PersistenceLocal prefs = new PersistenceLocal();
-  double value = 30.0;
+  double value = 90.0;
  
   @override
   void initState() {
@@ -127,7 +127,7 @@ class _SlideTimeState extends State<SlideTime> {
                     : (actualValue == 90.0)
                     ? '90': (actualValue == 120.0)
                     ? '120'
-                    : '30';
+                    : '90';
           },
           onChanged: (dynamic newValue) {
             setState(() {

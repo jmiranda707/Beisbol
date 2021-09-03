@@ -37,11 +37,11 @@ dependencies:
   direct_select: ^1.1.0
   timer_count_down: ^1.0.4+1
   animated_text_kit: ^3.1.2
+  audioplayers: ^0.15.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
@@ -58,6 +58,7 @@ flutter:
     - assets/
     - assets/logosEquipos/
     - assets/wallpapers/
+    - assets/audios/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

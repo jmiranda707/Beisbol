@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:audioplayers/audio_cache.dart';
 import 'package:beisbol/models/datosInningModel.dart';
 import 'package:beisbol/models/equipoModel.dart';
 import 'package:beisbol/models/libroModel.dart';
@@ -210,14 +211,19 @@ class HomeViewModel extends ChangeNotifier {
      DatosInning datos= this.datos;
       datos.outs= datos.outs + 1;
      this.mensajeAnimado = '${datos.outs} OUTS!!';
+     final player= AudioCache();
+     await player.play('audios/burla.mp3',);
      await Future.delayed( Duration(seconds: 6), () {
            this.mensajeAnimado = '';
       });
       
       datos.time= this.timeSelected;
-      if(datos.outs==3){
+      if(datos.outs>=3){
         if(datos.inningActual==datos.totalInnings && datos.abriendoCerrando=='cerrando'){
-          //navego a la ventana de fin
+          Navigator.pushNamed(context, 'finPage');
+        }
+        else if(datos.inningActual==datos.totalInnings && datos.abriendoCerrando=='abriendo' && equipo1.carreras < equipo2.carreras){
+          Navigator.pushNamed(context, 'finPage');
         }
         else{
          
@@ -249,15 +255,14 @@ class HomeViewModel extends ChangeNotifier {
       int valorBateado = pregunta.valor;
        DatosInning datos = this.datos;
         int seconds= 10;
-      
+      final player= AudioCache();
+     await player.play('audios/aplausosCortos.mp3',);
        Equipo equipo = (datos.abriendoCerrando=='abriendo')? this.equipo1: this.equipo2;
        //////Hombre en Tercera
       if(datos.terceraBusy){
         equipo.carreras= equipo.carreras + 1;
         datos.terceraBusy= false;
         this.datos= datos;
-        //TODO: MOSTRAR UN GIF DE CELEBRACION
-        // TODO: COLOCAR UN AUDIO
       }
       //////////hombre en segunda
       if(datos.segundaBusy){
@@ -265,8 +270,6 @@ class HomeViewModel extends ChangeNotifier {
            equipo.carreras= equipo.carreras + 1;
            datos.segundaBusy = false;
            this.datos= datos;
-           //TODO: MOSTRAR UN GIF DE CELEBRACION
-        // TODO: COLOCAR UN AUDIO
          }
          else if(2+valorBateado == 3){
            datos.segundaBusy = false;
@@ -280,8 +283,6 @@ class HomeViewModel extends ChangeNotifier {
            equipo.carreras= equipo.carreras + 1;
            datos.primeraBusy = false;
            this.datos= datos;
-           //TODO: MOSTRAR UN GIF DE CELEBRACION
-        // TODO: COLOCAR UN AUDIO
          }
          else if(1 + valorBateado == 3){
            datos.primeraBusy = false;
@@ -298,8 +299,6 @@ class HomeViewModel extends ChangeNotifier {
          if(valorBateado >= 4){
            equipo.carreras= equipo.carreras + 1;
            this.datos= datos;
-           //TODO: MOSTRAR UN GIF DE CELEBRACION
-        // TODO: COLOCAR UN AUDIO
          }
          else if(valorBateado == 3){
            datos.terceraBusy = true;
@@ -357,6 +356,10 @@ class HomeViewModel extends ChangeNotifier {
        await Future.delayed( Duration(seconds: seconds), () {
        this.mensajeCorrecto = [];
       });
+       (datos.abriendoCerrando=='abriendo')? this.equipo1= equipo: this.equipo2 = equipo;
+       if(datos.inningActual==datos.totalInnings && datos.abriendoCerrando=='cerrando' && equipo1.carreras < equipo2.carreras){
+          Navigator.pushNamed(context, 'finPage');
+        }
   }
 
 }

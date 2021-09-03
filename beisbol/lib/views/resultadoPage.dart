@@ -1,3 +1,4 @@
+import 'package:audioplayers/audio_cache.dart';
 import 'package:beisbol/models/datosInningModel.dart';
 import 'package:beisbol/models/equipoModel.dart';
 import 'package:beisbol/settings/colorz.dart';
@@ -8,11 +9,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
-class ResultadoPage extends StatelessWidget {
+class ResultadoPage extends StatefulWidget {
   const ResultadoPage({Key key}) : super(key: key);
 
   @override
+  _ResultadoPageState createState() => _ResultadoPageState();
+}
+
+class _ResultadoPageState extends State<ResultadoPage> {
+  @override
+  void initState() { 
+    super.initState();
+    playLocal();
+  }
+  playLocal() async {
+    final player= AudioCache();
+    await player.play('audios/tararara.mp3',);
+  }
+
+  @override
   Widget build(BuildContext context) {
+    playLocal();
     Equipo equipo1 = Provider.of<HomeViewModel>(context).equipo1;
     Equipo equipo2 = Provider.of<HomeViewModel>(context).equipo2;
     DatosInning datos = Provider.of<HomeViewModel>(context).datos;
@@ -21,22 +38,7 @@ class ResultadoPage extends StatelessWidget {
         height: SizesCustom.height,
         allowFontScaling: false);
     return Scaffold(
-    /*  appBar: AppBar(
-        automaticallyImplyLeading: true,
-        backgroundColor: Colorz.rojo,
-        title: Row(
-          children: [
-            Text('Resultado ', style: TextStyle(
-                                fontSize: f(25),
-                                fontWeight: FontWeight.bold,
-                                color: Colorz.blanco)),
-                               /* Text('Seleccione Logo del Equipo', style: TextStyle(
-                            fontSize: f(25),
-                            fontWeight: FontWeight.bold,
-                            color: Colorz.blanco,))*/
-          ],
-        ),
-      ),*/
+   
       body: Stack(
         children: [
           Image(
@@ -95,33 +97,7 @@ class ResultadoPage extends StatelessWidget {
                              ),
                            );
                          }
-                       
-                      /* _avatars(String path, Color color, BuildContext context) {
-                         
-                           return Container(
-                             child: CircleAvatar(
-                               backgroundColor: color.withOpacity(0.9),
-                               radius: w(80),
-                               child: InkWell(
-                                       onTap: ()=>  Provider.of<HomeViewModel>(context, listen:false).goToNombreEquipo2(context, path, color)
-                       ,
-                                               child: Image(
-                                   fit: BoxFit.contain,
-                                   image: AssetImage("assets/logosEquipos/$path"),
-                                 ),
-                               ),
-                             ),
-                              decoration: new BoxDecoration(
-                           color: Colorz.blanco, // border color
-                           shape: BoxShape.circle,
-                           border: new Border.all(
-                             width: w(3),
-                             color: Colorz.blanco,
-                           ),
-                         )
-                           );
-                               }*/
-                       
+
                          _rowEquipo(Equipo equipo) {
                            return Row(children: [
                    //_avatars(equipo1.logoImage, equipo1.color, context),
@@ -141,5 +117,4 @@ class ResultadoPage extends StatelessWidget {
                      
                  ],);
                          }
-      
 }
