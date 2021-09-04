@@ -5,7 +5,6 @@ import 'package:beisbol/models/datosInningModel.dart';
 import 'package:beisbol/models/equipoModel.dart';
 import 'package:beisbol/models/libroModel.dart';
 import 'package:beisbol/models/preguntaModel.dart';
-import 'package:beisbol/models/preguntaModel.dart';
 import 'package:beisbol/services/libros.dart';
 import 'package:beisbol/services/preguntas.dart';
 import 'package:beisbol/settings/persistence.dart';
@@ -186,7 +185,7 @@ class HomeViewModel extends ChangeNotifier {
      Navigator.pushReplacementNamed(context, 'partidoPage');
   }
 
-  picharPregunta(){
+  picharPregunta(BuildContext context){
     List<Pregunta> preguntas = this.allPreguntas;
     if(preguntas.length>0){
        final random = new Random();
@@ -195,14 +194,12 @@ class HomeViewModel extends ChangeNotifier {
     this.showPregunta= true;
     }
     else{
-      //TODO: VERIFICAR CUAL EQUIPO TIENE MAS CARRERAS
-      //se han agotado las preguntas... el equipo x gana el juego
+      Navigator.pushNamed(context, 'finPage');
     }
     
   }
 
    timeOver(BuildContext context){
-       //mostrar gif con tiempo acabo 
      this.respuestaIncorrecta(context);
    }
 
@@ -219,10 +216,10 @@ class HomeViewModel extends ChangeNotifier {
       
       datos.time= this.timeSelected;
       if(datos.outs>=3){
-        if(datos.inningActual==datos.totalInnings && datos.abriendoCerrando=='cerrando'){
+        if(datos.inningActual>=datos.totalInnings && datos.abriendoCerrando=='cerrando' && equipo1.carreras != equipo2.carreras){
           Navigator.pushNamed(context, 'finPage');
         }
-        else if(datos.inningActual==datos.totalInnings && datos.abriendoCerrando=='abriendo' && equipo1.carreras < equipo2.carreras){
+        else if(datos.inningActual>=datos.totalInnings && datos.abriendoCerrando=='abriendo' && equipo1.carreras < equipo2.carreras){
           Navigator.pushNamed(context, 'finPage');
         }
         else{
@@ -357,7 +354,7 @@ class HomeViewModel extends ChangeNotifier {
        this.mensajeCorrecto = [];
       });
        (datos.abriendoCerrando=='abriendo')? this.equipo1= equipo: this.equipo2 = equipo;
-       if(datos.inningActual==datos.totalInnings && datos.abriendoCerrando=='cerrando' && equipo1.carreras < equipo2.carreras){
+       if(datos.inningActual>=datos.totalInnings && datos.abriendoCerrando=='cerrando' && equipo1.carreras < equipo2.carreras){
           Navigator.pushNamed(context, 'finPage');
         }
   }

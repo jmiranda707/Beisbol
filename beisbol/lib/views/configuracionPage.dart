@@ -3,7 +3,6 @@ import 'package:beisbol/settings/responsive.dart';
 import 'package:beisbol/viewModels/homeViewModel.dart';
 import 'package:beisbol/widgets/botones.dart';
 import 'package:beisbol/widgets/slide.dart';
-import 'package:direct_select/direct_select.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';

@@ -52,7 +52,7 @@ class _PartidoPageState extends State<PartidoPage> {
           backgroundColor: Colorz.blanco,
 
           onPressed: (){
-            Provider.of<HomeViewModel>(context, listen: false).picharPregunta();
+            Provider.of<HomeViewModel>(context, listen: false).picharPregunta(context);
           },
           child: Icon(Icons.help, size: w(150), color: Colorz.azulCielo),
           ),

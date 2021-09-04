@@ -1,7 +1,6 @@
 import 'package:beisbol/settings/colorz.dart';
 import 'package:beisbol/settings/responsive.dart';
 import 'package:beisbol/viewModels/homeViewModel.dart';
-import 'package:beisbol/widgets/botones.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -49,15 +48,15 @@ class SeleccioneLogoPage extends StatelessWidget {
                     Expanded(child: SizedBox()),
                 _rows(
                     'princesa.png',
-                    'soldado.png',
+                    'soldado2.png',
                     'oveja.png',
-                    'estrella.png',
+                    'guerrero.png',
                     Colorz.rosado,
                     Colorz.verdeOscuro,
                     Colorz.azulCielo,
                     Colorz.morado, context,),
                     SizedBox(height: w(90),),
-                _rows('cafe.png', 'paloma.png', 'adorador.png', 'biblia.png',
+                _rows('tigre.png', 'paloma.png', 'adorador.png', 'cafe2.png',
                     Colorz.amarillo, Colorz.azul, Colorz.naranja, Colorz.rojo, context),
                       Expanded(child: SizedBox()),
               ],
