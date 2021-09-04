@@ -194,8 +194,8 @@ class _FinPageState extends State<FinPage> {
                           speed: Duration(milliseconds: 70)),
                       TyperAnimatedText(
                           (ganador == null)
-                              ? '${equipo1.nombre.toUpperCase()} y ${equipo2.nombre.toUpperCase()}'
-                              : 'CAMPEÓN...',
+                              ? 'los ${equipo1.nombre.toUpperCase()} y ${equipo2.nombre.toUpperCase()}'
+                              : 'VENCEDOR...',
                           textStyle: TextStyle(
                             fontSize: 80,
                             fontFamily: 'Bobbers',
@@ -204,7 +204,7 @@ class _FinPageState extends State<FinPage> {
                           speed: Duration(milliseconds: 70)),
                       TyperAnimatedText(
                           (ganador == null)
-                              ? 'por su dedicación!!!'
+                              ? 'todo el esfuerzo!!!'
                               : '${ganador.nombre.toUpperCase()}!!!',
                           textStyle: TextStyle(
                             fontSize: 80,

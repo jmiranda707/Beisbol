@@ -54,13 +54,15 @@ class _BienvenidaPageState extends State<BienvenidaPage> {
                 height: w(160),
               ),
               Center(
-                  child: Text('Bienvenidos',
+                  child: Text('Bienvenidos\nal',
+                  textAlign: TextAlign.center,
                       style: TextStyle(
+                        
                           fontSize: f(100),
                           fontWeight: FontWeight.bold,
                           color: Colorz.negro))),
               SizedBox(
-                height: w(100),
+                height: w(50),
               ),
               Center(
                   child: Text('BEISBOL BÍBLICO',
@@ -69,7 +71,7 @@ class _BienvenidaPageState extends State<BienvenidaPage> {
                           fontWeight: FontWeight.bold,
                           color: Colorz.amarillo))),
               SizedBox(
-                height: w(190),
+                height: w(160),
               ),
               CircularButton(
                 borderColor: Colorz.blanco,

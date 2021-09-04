@@ -66,13 +66,18 @@ class _PartidoPageState extends State<PartidoPage> {
             image: AssetImage("assets/wallpapers/partido2.jpg"),
           ),
           
-          Positioned(
+         Positioned(
             bottom: w(180),
             right: w(50),
                       child: CircleAvatar(
             radius: w(50),
-            backgroundColor: Colors.blue[900],
-            child: Center(child: Text(allPreguntas.length.toString(), style: TextStyle(fontSize: f(50), color: Colorz.blanco))),
+            backgroundColor: Colors.red[900],
+            child: Stack(
+              children: [
+                
+                Center(child: Text(allPreguntas.length.toString(), style: TextStyle(fontSize: f(50), color: Colors.yellow, fontWeight: FontWeight.bold))),
+              ],
+            ),
             ),
           ),
           (showPregunta)?Positioned(
@@ -321,6 +326,7 @@ class _PartidoPageState extends State<PartidoPage> {
                       fontWeight: FontWeight.bold))),
           SizedBox(width: w(10)),
           Container(
+            width: w(60),
             color: equipo.color,
             child: Text(equipo.carreras.toString(),
                 style: TextStyle(
