@@ -155,11 +155,15 @@ class HomeViewModel extends ChangeNotifier {
       Navigator.pushNamed(context, 'seleccioneNombre2');
   }
 
-  goToConfiguracion(BuildContext context, String nombre,){
+  goToConfiguracion(BuildContext context,){
+     
+     Navigator.pushNamed(context, 'configuracionPage');
+  }
+  goToComodines(BuildContext context, String nombre,){
      Equipo equipo= this.equipo2;
      equipo.nombre = nombre;
      this.equipo2 = equipo;
-     Navigator.pushNamed(context, 'configuracionPage');
+     Navigator.pushNamed(context, 'comodinesPage');
   }
 
   goToResultado(BuildContext context){

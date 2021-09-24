@@ -1,4 +1,5 @@
 import 'package:beisbol/views/bienvenidaPage.dart';
+import 'package:beisbol/views/comodinesPage.dart';
 import 'package:beisbol/views/configuracionPage.dart';
 import 'package:beisbol/views/finJuegoPage.dart';
 import 'package:beisbol/views/partidoPage.dart';
@@ -20,6 +21,7 @@ Map<String, WidgetBuilder> getApplicationRoutes() {
     'resultadoPage': (BuildContext context) => ResultadoPage(),
     'partidoPage': (BuildContext context) => PartidoPage(),
     'finPage': (BuildContext context) => FinPage(),
+    'comodinesPage': (BuildContext context) => ComodinesPage(),
     
   };
 }

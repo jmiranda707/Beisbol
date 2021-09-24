@@ -84,7 +84,7 @@ class _SeleccioneNombre2PageState extends State<SeleccioneNombre2Page> {
                 width: 400,
                 color: Colorz.rojo,
                 function: (){
-                  Provider.of<HomeViewModel>(context, listen: false).goToConfiguracion(context, controller.text);
+                  Provider.of<HomeViewModel>(context, listen: false).goToComodines(context, controller.text);
                  
                 },
                 height: 60,
