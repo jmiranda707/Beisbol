@@ -7,7 +7,11 @@ class Equipo {
     this.color,
     this.idEquipo,
     this.logoImage,
-    this.teamNumb
+    this.teamNumb,
+    this.cambiarBateador,
+    this.cambiarPregunta,
+    this.consultarBiblia,
+    this.consultarEquipo
   });
  
    String nombre;
@@ -16,5 +20,9 @@ class Equipo {
    int teamNumb;
    Color color;
    int carreras;
+   int consultarEquipo;
+   int consultarBiblia;
+   int cambiarPregunta;
+   int cambiarBateador;
 
 }

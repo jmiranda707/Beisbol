@@ -30,32 +30,32 @@ class _PartidoPageState extends State<PartidoPage> {
     Equipo equipo2 = Provider.of<HomeViewModel>(context).equipo2;
     DatosInning datos = Provider.of<HomeViewModel>(context).datos;
     bool showPregunta = Provider.of<HomeViewModel>(context).showPregunta;
-    Pregunta pregunta= Provider.of<HomeViewModel>(context).preguntaSelected;
-     String mensajeAnimado = Provider.of<HomeViewModel>(context).mensajeAnimado;
-      List<String> mensajeCorrecto = Provider.of<HomeViewModel>(context).mensajeCorrecto;
-      List<Pregunta> allPreguntas = Provider.of<HomeViewModel>(context).allPreguntas;
+    Pregunta pregunta = Provider.of<HomeViewModel>(context).preguntaSelected;
+    String mensajeAnimado = Provider.of<HomeViewModel>(context).mensajeAnimado;
+    List<String> mensajeCorrecto =
+        Provider.of<HomeViewModel>(context).mensajeCorrecto;
+    List<Pregunta> allPreguntas =
+        Provider.of<HomeViewModel>(context).allPreguntas;
     Equipo equipoAlBate =
         (datos.abriendoCerrando == 'abriendo') ? equipo1 : equipo2;
-   /* _isPause= (showPregunta)?true: false;
+    /* _isPause= (showPregunta)?true: false;
     (showPregunta)?controller.resume(): controller.pause();*/
     ScreenUtil.init(context,
         width: SizesCustom.width,
         height: SizesCustom.height,
         allowFontScaling: false);
     return Scaffold(
-     
       floatingActionButton: Container(
-        width:  w(150),
-        height:  w(150),
+        width: w(150),
+        height: w(150),
         child: FloatingActionButton(
-          
           backgroundColor: Colorz.blanco,
-
-          onPressed: (){
-            Provider.of<HomeViewModel>(context, listen: false).picharPregunta(context);
+          onPressed: () {
+            Provider.of<HomeViewModel>(context, listen: false)
+                .picharPregunta(context);
           },
           child: Icon(Icons.help, size: w(150), color: Colorz.azulCielo),
-          ),
+        ),
       ),
       body: Stack(
         children: [
@@ -65,79 +65,86 @@ class _PartidoPageState extends State<PartidoPage> {
             height: double.infinity,
             image: AssetImage("assets/wallpapers/partido2.jpg"),
           ),
-          
-         Positioned(
+          Positioned(
+            bottom: w(20),
+            left: w(30),
+            child: _rowComodines(context, equipoAlBate),
+          ),
+          Positioned(
             bottom: w(180),
             right: w(50),
-                      child: CircleAvatar(
-            radius: w(50),
-            backgroundColor: Colors.red[900],
-            child: Stack(
-              children: [
-                
-                Center(child: Text(allPreguntas.length.toString(), style: TextStyle(fontSize: f(50), color: Colors.yellow, fontWeight: FontWeight.bold))),
-              ],
-            ),
+            child: CircleAvatar(
+              radius: w(50),
+              backgroundColor: Colors.red[900],
+              child: Stack(
+                children: [
+                  Center(
+                      child: Text(allPreguntas.length.toString(),
+                          style: TextStyle(
+                              fontSize: f(50),
+                              color: Colors.yellow,
+                              fontWeight: FontWeight.bold))),
+                ],
+              ),
             ),
           ),
-          (showPregunta)?Positioned(
-            bottom: w(180),
-            left: (MediaQuery.of(context).size.width / 2) - w(125),
-            child: IconRectangularButton(
-              borderColor: Colorz.blanco,
-              width: 250,
-              color: Colorz.verdeOscuro,
-              function: () async{
-                
-               await Provider.of<HomeViewModel>(context, listen: false).respuestaCorrecta(pregunta ,context);
-               setState(() {
-                                _isPause = true;
-                              });
-              },
-              height: 60,
-              nameButton: 'CORRECTO',
-              icon: Icons.check_circle,
-              iconColor: Colorz.amarillo,
-            ),
-          ):Offstage(),
-         
-          (showPregunta)?Positioned(
-            bottom: w(100),
-            left: (MediaQuery.of(context).size.width / 2) - w(125),
-            child: IconRectangularButton(
-              borderColor: Colorz.blanco,
-              width: 250,
-              color: Colorz.rojo,
-              function: () async{
-               
-                await Provider.of<HomeViewModel>(context, listen: false).respuestaIncorrecta(context);
-                setState(() {
-                                _isPause = true;
-                              });
-              },
-              height: 60,
-              nameButton: 'INCORRECTO',
-              icon: Icons.cancel,
-              iconColor: Colorz.blanco,
-            ),
-          ):Offstage(),
+          (showPregunta)
+              ? Positioned(
+                  bottom: w(180),
+                  left: (MediaQuery.of(context).size.width / 2) - w(125),
+                  child: IconRectangularButton(
+                    borderColor: Colorz.blanco,
+                    width: 250,
+                    color: Colorz.verdeOscuro,
+                    function: () async {
+                      await Provider.of<HomeViewModel>(context, listen: false)
+                          .respuestaCorrecta(pregunta, context);
+                      setState(() {
+                        _isPause = true;
+                      });
+                    },
+                    height: 60,
+                    nameButton: 'CORRECTO',
+                    icon: Icons.check_circle,
+                    iconColor: Colorz.amarillo,
+                  ),
+                )
+              : Offstage(),
+          (showPregunta)
+              ? Positioned(
+                  bottom: w(100),
+                  left: (MediaQuery.of(context).size.width / 2) - w(125),
+                  child: IconRectangularButton(
+                    borderColor: Colorz.blanco,
+                    width: 250,
+                    color: Colorz.rojo,
+                    function: () async {
+                      await Provider.of<HomeViewModel>(context, listen: false)
+                          .respuestaIncorrecta(context);
+                      setState(() {
+                        _isPause = true;
+                      });
+                    },
+                    height: 60,
+                    nameButton: 'INCORRECTO',
+                    icon: Icons.cancel,
+                    iconColor: Colorz.blanco,
+                  ),
+                )
+              : Offstage(),
           Positioned(
             top: w(20),
             left: w(35),
-                      child: Container(
-                        width: w(600),
-                        height: w(270),
-              margin: EdgeInsets.symmetric(horizontal: w(0)),
-                     
-                     padding: EdgeInsets.all(w(10)),
-                     decoration: new BoxDecoration(
-                       color: Colorz.negro.withOpacity(0.75),
-                       borderRadius: BorderRadius.circular(w(80)),
- 
-  )
-            ),
+            child: Container(
+                width: w(600),
+                height: w(270),
+                margin: EdgeInsets.symmetric(horizontal: w(0)),
+                padding: EdgeInsets.all(w(10)),
+                decoration: new BoxDecoration(
+                  color: Colorz.negro.withOpacity(0.75),
+                  borderRadius: BorderRadius.circular(w(80)),
+                )),
           ),
-
           Positioned(
             top: w(70),
             left: w(35),
@@ -170,134 +177,136 @@ class _PartidoPageState extends State<PartidoPage> {
                   _rowEquipo(equipo2),
                 ],
               )),
-           (showPregunta)?Positioned(
-              top: w(20),
-              right: w(40),
-              child: Countdown(
-                seconds: datos.time,
-                build: (BuildContext context, double time) {
-                  final IconData buttonIcon = _isRestart
-                      ? Icons.refresh_rounded
-                      : (_isPause ? Icons.pause_circle_filled : Icons.play_circle_fill);
-                  return Column(
-                    children: [
-                      Text('Tiempo',
-                          style: TextStyle(
-                              color: Colorz.negro,
-                              fontSize: f(70),
-                              fontWeight: FontWeight.bold)),
-                      Text(time.toString(),
-                          style: TextStyle(
-                              color: Colors.red[900],
-                              fontSize: f(100),
-                              fontWeight: FontWeight.bold)),
-                      InkWell(
-                          onTap: () {
-                            final isCompleted = controller.isCompleted;
-                            isCompleted
-                                ? controller.restart()
-                                : controller.pause();
+          (showPregunta)
+              ? Positioned(
+                  top: w(20),
+                  right: w(40),
+                  child: Countdown(
+                    seconds: datos.time,
+                    build: (BuildContext context, double time) {
+                      final IconData buttonIcon = _isRestart
+                          ? Icons.refresh_rounded
+                          : (_isPause
+                              ? Icons.pause_circle_filled
+                              : Icons.play_circle_fill);
+                      return Column(
+                        children: [
+                          Text('Tiempo',
+                              style: TextStyle(
+                                  color: Colorz.negro,
+                                  fontSize: f(70),
+                                  fontWeight: FontWeight.bold)),
+                          Text(time.toString(),
+                              style: TextStyle(
+                                  color: Colors.red[900],
+                                  fontSize: f(100),
+                                  fontWeight: FontWeight.bold)),
+                          InkWell(
+                              onTap: () {
+                                final isCompleted = controller.isCompleted;
+                                isCompleted
+                                    ? controller.restart()
+                                    : controller.pause();
 
-                            if (!isCompleted && !_isPause) {
-                              controller.resume();
-                            }
+                                if (!isCompleted && !_isPause) {
+                                  controller.resume();
+                                }
 
-                            if (isCompleted) {
-                              setState(() {
-                                _isRestart = false;
-                              });
-                            } else {
-                              setState(() {
-                                _isPause = !_isPause;
-                              });
-                            }
-                          },
-                          child: Icon(buttonIcon,
-                              size: w(100), color: Colorz.negro))
-                    ],
-                  );
-                },
-                controller: controller,
-                interval: Duration(milliseconds: 100),
-                onFinished: () async{
-                  
-                    await Provider.of<HomeViewModel>(context, listen: false).timeOver(context);
-                    setState(() {
-                                _isPause = true;
-                              });
-                 
-                },
-              )):Offstage(),
-              (showPregunta)?Center(
-                child: Container(
-                 // margin: EdgeInsets.symmetric(horizontal: w(390)),
-                   width: w(1100),
-                   height: w(400),
-                   color: Colorz.negro.withOpacity(0.98),
-                   padding: EdgeInsets.all(w(10)),
-                  child: 
-                SingleChildScrollView(
-                                  child: Center(
-                    child: Text('${pregunta.cita}\n${pregunta.pregunta}',
-                    textAlign: TextAlign.center,
-              style: TextStyle(
-                      color: Colorz.blanco,
-                      fontSize: f(40),
-                      fontWeight: FontWeight.bold)),
+                                if (isCompleted) {
+                                  setState(() {
+                                    _isRestart = false;
+                                  });
+                                } else {
+                                  setState(() {
+                                    _isPause = !_isPause;
+                                  });
+                                }
+                              },
+                              child: Icon(buttonIcon,
+                                  size: w(100), color: Colorz.negro))
+                        ],
+                      );
+                    },
+                    controller: controller,
+                    interval: Duration(milliseconds: 100),
+                    onFinished: () async {
+                      await Provider.of<HomeViewModel>(context, listen: false)
+                          .timeOver(context);
+                      setState(() {
+                        _isPause = true;
+                      });
+                    },
+                  ))
+              : Offstage(),
+          (showPregunta)
+              ? Center(
+                  child: Container(
+                  // margin: EdgeInsets.symmetric(horizontal: w(390)),
+                  width: w(1100),
+                  height: w(400),
+                  color: Colorz.negro.withOpacity(0.98),
+                  padding: EdgeInsets.all(w(10)),
+                  child: SingleChildScrollView(
+                    child: Center(
+                      child: Text('${pregunta.cita}\n${pregunta.pregunta}',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              color: Colorz.blanco,
+                              fontSize: f(40),
+                              fontWeight: FontWeight.bold)),
+                    ),
+                  ),
+                ))
+              : Offstage(),
+          (mensajeAnimado == '')
+              ? Offstage()
+              : Center(
+                  child: Container(
+                    color: Colorz.negro,
+                    width: w(600),
+                    child: ScaleAnimatedTextKit(
+                      onTap: () {
+                        //print("Tap Event");
+                      },
+                      text: [mensajeAnimado],
+                      textStyle: TextStyle(
+                        fontSize: f(150),
+                        fontFamily: "Canterbury",
+                        fontWeight: FontWeight.bold,
+                        color: Colorz.rojo,
+                      ),
+                      textAlign: TextAlign.center,
+                      isRepeatingAnimation: true,
+                    ),
+                  ),
+                ),
+          (mensajeCorrecto.length == 0)
+              ? Offstage()
+              : Center(
+                  child: Container(
+                    color: Colorz.negro,
+                    width: w(850),
+                    child: ColorizeAnimatedTextKit(
+                      onTap: () {},
+                      text: mensajeCorrecto,
+                      textStyle: TextStyle(
+                        fontSize: f(150),
+                        fontFamily: "Horizon",
+                        fontWeight: FontWeight.bold,
+                      ),
+                      colors: [
+                        Colors.purple,
+                        Colors.blue,
+                        Colors.green,
+                        Colors.yellow,
+                        Colors.orange,
+                        Colors.red,
+                      ],
+                      textAlign: TextAlign.center,
+                      isRepeatingAnimation: false,
+                    ),
                   ),
                 )
-                ,)
-              ):Offstage(),
-
-             (mensajeAnimado=='')?Offstage(): Center(
-               child: Container(
-                 color: Colorz.negro,
-  width: w(600),
-  child: ScaleAnimatedTextKit(
-    onTap: () {
-        //print("Tap Event");
-      },
-    text: [
-      mensajeAnimado
-      ],
-    textStyle: TextStyle(
-        fontSize: f(150),
-        fontFamily: "Canterbury",
-        fontWeight: FontWeight.bold,
-        color: Colorz.rojo,
-    ),
-    textAlign: TextAlign.center,
-    isRepeatingAnimation: true,
-  ),
-),
-             ),
-
-            (mensajeCorrecto.length==0)?Offstage(): Center(
-               child: Container(
-                 color: Colorz.negro,
-  width: w(850),
-  child: ColorizeAnimatedTextKit(
-    onTap: () {
-      },
-    text:mensajeCorrecto,
-    textStyle: TextStyle(
-        fontSize: f(150),
-        fontFamily: "Horizon",
-        fontWeight: FontWeight.bold,
-    ),
-    colors: [
-      Colors.purple,
-      Colors.blue,
-      Colors.green,
-      Colors.yellow,
-      Colors.orange,
-      Colors.red,
-    ],
-    textAlign: TextAlign.center,
-    isRepeatingAnimation: false,
-  ),
-),
-             )
         ],
       ),
     );
@@ -346,12 +355,17 @@ class _PartidoPageState extends State<PartidoPage> {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           SizedBox(width: w(70)),
-          
           SizedBox(width: w(20)),
-         (datos.outs>=1)? Icon(Icons.sports_baseball, size: w(40), color: Colorz.blanco): Offstage(),
-         (datos.outs>=2)? Icon(Icons.sports_baseball, size: w(40), color: Colorz.blanco): Offstage(),
-         (datos.outs>=3)?  Icon(Icons.sports_baseball, size: w(40), color: Colorz.blanco): Offstage(),
-         Text('${datos.inningActual}',
+          (datos.outs >= 1)
+              ? Icon(Icons.sports_baseball, size: w(40), color: Colorz.blanco)
+              : Offstage(),
+          (datos.outs >= 2)
+              ? Icon(Icons.sports_baseball, size: w(40), color: Colorz.blanco)
+              : Offstage(),
+          (datos.outs >= 3)
+              ? Icon(Icons.sports_baseball, size: w(40), color: Colorz.blanco)
+              : Offstage(),
+          Text('${datos.inningActual}',
               style: TextStyle(
                   color: Colorz.naranja,
                   fontSize: f(30),
@@ -364,6 +378,72 @@ class _PartidoPageState extends State<PartidoPage> {
               color: Colorz.naranja),
         ],
       ),
+    );
+  }
+
+  _rowComodines(BuildContext context, Equipo equipo) {
+    final hvm = Provider.of<HomeViewModel>(context, listen: false);
+    return Row(
+      children: [
+        _comodinIcono('equipo.jpg', equipo.consultarEquipo, () {
+          hvm.consultarEquipo(equipo.idEquipo);
+        }),
+        SizedBox(width: w(10)),
+        _comodinIcono('biblia.jpg', equipo.consultarBiblia, () {
+          hvm.consultarBiblia(equipo.idEquipo);
+        }),
+        SizedBox(width: w(10)),
+        //_comodinIcono('sacrificio.jpg', 'Sólo es posible si existe al menos un jugador en base y menos de 2 outs en la pizarra. Existe un 50% de probabilidad de mover a todos los jugadores embasados a cambio de 1 OUT y otro 50% de probabilidad de producir un DOBLE PLAY.', 'Toque de Bola'),
+        //SizedBox(height: w(15)),
+        _comodinIcono('cambiar.jpg', equipo.cambiarPregunta, () {
+          hvm.cambiarPregunta(equipo.idEquipo);
+        }),
+        SizedBox(width: w(10)),
+        _comodinIcono('bateador.jpg', equipo.cambiarBateador, () {
+          hvm.cambiarBateador(equipo.idEquipo);
+        }),
+      ],
+    );
+  }
+
+  _comodinIcono(
+    String image,
+    int comodin,
+    Function function,
+  ) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        Stack(
+          children: [
+            Container(
+              child: InkWell(
+                onTap: (comodin == 1) ? function : null,
+                child: ClipOval(
+                    child: Image(
+                  fit: BoxFit.cover,
+                  image: AssetImage("assets/logosEquipos/$image"),
+                  width: w(130),
+                  height: w(130),
+                )),
+              ),
+              decoration: new BoxDecoration(
+                color: Colorz.blanco, // border color
+                shape: BoxShape.circle,
+                border: new Border.all(
+                  width: w(5),
+                  color: Colorz.blanco,
+                ),
+              ),
+            ),
+            (comodin == 0)
+                ? Center(
+                    child: Icon(Icons.cancel_outlined,
+                        color: Colorz.rojo, size: w(140)))
+                : Offstage()
+          ],
+        ),
+      ],
     );
   }
 }

@@ -182,6 +182,14 @@ class HomeViewModel extends ChangeNotifier {
      this.datos = datos;
      this.equipo1.carreras= 0;
      this.equipo2.carreras=0;
+     this.equipo1.cambiarPregunta=1;
+     this.equipo1.cambiarBateador=1;
+     this.equipo1.consultarEquipo=1;
+     this.equipo1.consultarBiblia=1;
+     this.equipo2.cambiarPregunta=1;
+     this.equipo2.cambiarBateador=1;
+     this.equipo2.consultarEquipo=1;
+     this.equipo2.consultarBiblia=1;
      Navigator.pushNamed(context, 'resultadoPage');
   }
 
@@ -361,6 +369,50 @@ class HomeViewModel extends ChangeNotifier {
        if(datos.inningActual>=datos.totalInnings && datos.abriendoCerrando=='cerrando' && equipo1.carreras < equipo2.carreras){
           Navigator.pushNamed(context, 'finPage');
         }
+  }
+
+  void consultarBiblia(int idEquipo) {
+    Equipo equipo= (idEquipo==1)? this.equipo1:this.equipo2;
+    equipo.consultarBiblia=0;
+    if(idEquipo==1){
+      this.equipo1= equipo;
+    } 
+    else{
+      this.equipo2= equipo;
+    }
+  }
+
+  void consultarEquipo(int idEquipo) {
+    Equipo equipo= (idEquipo==1)? this.equipo1:this.equipo2;
+    equipo.consultarEquipo=0;
+    if(idEquipo==1){
+      this.equipo1= equipo;
+    } 
+    else{
+      this.equipo2= equipo;
+    }
+  }
+
+  void cambiarBateador(int idEquipo) {
+    Equipo equipo= (idEquipo==1)? this.equipo1:this.equipo2;
+    equipo.cambiarBateador=0;
+    if(idEquipo==1){
+      this.equipo1= equipo;
+    } 
+    else{
+      this.equipo2= equipo;
+    }
+  }
+
+  void cambiarPregunta(int idEquipo) {
+    Equipo equipo= (idEquipo==1)? this.equipo1:this.equipo2;
+    equipo.cambiarPregunta=0;
+    if(idEquipo==1){
+      this.equipo1= equipo;
+    } 
+    else{
+      this.equipo2= equipo;
+    }
   }
 
 }
