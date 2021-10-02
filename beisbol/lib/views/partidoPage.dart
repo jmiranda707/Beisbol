@@ -68,7 +68,7 @@ class _PartidoPageState extends State<PartidoPage> {
           Positioned(
             bottom: w(20),
             left: w(30),
-            child: _rowComodines(context, equipoAlBate),
+            child: _rowComodines(context, equipoAlBate, pregunta),
           ),
           Positioned(
             bottom: w(180),
@@ -263,7 +263,7 @@ class _PartidoPageState extends State<PartidoPage> {
               : Center(
                   child: Container(
                     color: Colorz.negro,
-                    width: w(600),
+                    width: w(1200),
                     child: ScaleAnimatedTextKit(
                       onTap: () {
                         //print("Tap Event");
@@ -285,7 +285,7 @@ class _PartidoPageState extends State<PartidoPage> {
               : Center(
                   child: Container(
                     color: Colorz.negro,
-                    width: w(850),
+                    width: w(1200),
                     child: ColorizeAnimatedTextKit(
                       onTap: () {},
                       text: mensajeCorrecto,
@@ -306,144 +306,158 @@ class _PartidoPageState extends State<PartidoPage> {
                       isRepeatingAnimation: false,
                     ),
                   ),
-                )
-        ],
-      ),
-    );
-  }
-
-  _baseWidget(bool isBusy, Color color) {
-    return new Transform(
-      child: Icon(Icons.stop,
-          size: w(170), color: (isBusy) ? color : Colorz.blanco),
-      alignment: FractionalOffset.center,
-      transform: new Matrix4.identity()..rotateZ(45 * 3.1415927 / 180),
-    );
-  }
-
-  _rowEquipo(Equipo equipo) {
-    return Container(
-      color: equipo.color.withOpacity(0.7),
-      child: Row(
-        children: [
-          Container(
-              width: w(240),
-              child: Text(equipo.nombre,
-                  style: TextStyle(
-                      color: Colorz.blanco,
-                      fontSize: f(40),
-                      fontWeight: FontWeight.bold))),
-          SizedBox(width: w(10)),
-          Container(
-            width: w(60),
-            color: equipo.color,
-            child: Text(equipo.carreras.toString(),
-                style: TextStyle(
-                    color: Colorz.blanco,
-                    fontSize: f(50),
-                    fontWeight: FontWeight.bold)),
-          ),
-        ],
-      ),
-    );
-  }
-
-  _rowInning(DatosInning datos) {
-    return Container(
-      width: w(295),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          SizedBox(width: w(70)),
-          SizedBox(width: w(20)),
-          (datos.outs >= 1)
-              ? Icon(Icons.sports_baseball, size: w(40), color: Colorz.blanco)
-              : Offstage(),
-          (datos.outs >= 2)
-              ? Icon(Icons.sports_baseball, size: w(40), color: Colorz.blanco)
-              : Offstage(),
-          (datos.outs >= 3)
-              ? Icon(Icons.sports_baseball, size: w(40), color: Colorz.blanco)
-              : Offstage(),
-          Text('${datos.inningActual}',
-              style: TextStyle(
-                  color: Colorz.naranja,
-                  fontSize: f(30),
-                  fontWeight: FontWeight.bold)),
-          Icon(
-              (datos.abriendoCerrando == 'abriendo')
-                  ? Icons.arrow_drop_up
-                  : Icons.arrow_drop_down,
-              size: w(40),
-              color: Colorz.naranja),
-        ],
-      ),
-    );
-  }
-
-  _rowComodines(BuildContext context, Equipo equipo) {
-    final hvm = Provider.of<HomeViewModel>(context, listen: false);
-    return Row(
-      children: [
-        _comodinIcono('equipo.jpg', equipo.consultarEquipo, () {
-          hvm.consultarEquipo(equipo.idEquipo);
-        }),
-        SizedBox(width: w(10)),
-        _comodinIcono('biblia.jpg', equipo.consultarBiblia, () {
-          hvm.consultarBiblia(equipo.idEquipo);
-        }),
-        SizedBox(width: w(10)),
-        //_comodinIcono('sacrificio.jpg', 'Sólo es posible si existe al menos un jugador en base y menos de 2 outs en la pizarra. Existe un 50% de probabilidad de mover a todos los jugadores embasados a cambio de 1 OUT y otro 50% de probabilidad de producir un DOBLE PLAY.', 'Toque de Bola'),
-        //SizedBox(height: w(15)),
-        _comodinIcono('cambiar.jpg', equipo.cambiarPregunta, () {
-          hvm.cambiarPregunta(equipo.idEquipo);
-        }),
-        SizedBox(width: w(10)),
-        _comodinIcono('bateador.jpg', equipo.cambiarBateador, () {
-          hvm.cambiarBateador(equipo.idEquipo);
-        }),
-      ],
-    );
-  }
-
-  _comodinIcono(
-    String image,
-    int comodin,
-    Function function,
-  ) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        Stack(
-          children: [
-            Container(
-              child: InkWell(
-                onTap: (comodin == 1) ? function : null,
-                child: ClipOval(
-                    child: Image(
-                  fit: BoxFit.cover,
-                  image: AssetImage("assets/logosEquipos/$image"),
-                  width: w(130),
-                  height: w(130),
-                )),
-              ),
-              decoration: new BoxDecoration(
-                color: Colorz.blanco, // border color
-                shape: BoxShape.circle,
-                border: new Border.all(
-                  width: w(5),
-                  color: Colorz.blanco,
                 ),
-              ),
-            ),
-            (comodin == 0)
-                ? Center(
-                    child: Icon(Icons.cancel_outlined,
-                        color: Colorz.rojo, size: w(140)))
-                : Offstage()
-          ],
-        ),
-      ],
-    );
-  }
+              
+                (mensajeAnimado!='')?Positioned(
+                  right: 0,
+                  child: _gifBurla((datos.outs<3)?'patan':'burro')
+                                ,):Offstage(),
+                        ],
+                      ),
+                    );
+                  }
+                
+                  _baseWidget(bool isBusy, Color color) {
+                    return new Transform(
+                      child: Icon(Icons.stop,
+                          size: w(170), color: (isBusy) ? color : Colorz.blanco),
+                      alignment: FractionalOffset.center,
+                      transform: new Matrix4.identity()..rotateZ(45 * 3.1415927 / 180),
+                    );
+                  }
+                
+                  _rowEquipo(Equipo equipo) {
+                    return Container(
+                      color: equipo.color.withOpacity(0.7),
+                      child: Row(
+                        children: [
+                          Container(
+                              width: w(240),
+                              child: Text(equipo.nombre,
+                                  style: TextStyle(
+                                      color: Colorz.blanco,
+                                      fontSize: f(40),
+                                      fontWeight: FontWeight.bold))),
+                          SizedBox(width: w(10)),
+                          Container(
+                            width: w(60),
+                            color: equipo.color,
+                            child: Text(equipo.carreras.toString(),
+                                style: TextStyle(
+                                    color: Colorz.blanco,
+                                    fontSize: f(50),
+                                    fontWeight: FontWeight.bold)),
+                          ),
+                        ],
+                      ),
+                    );
+                  }
+                
+                  _rowInning(DatosInning datos) {
+                    return Container(
+                      width: w(295),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          SizedBox(width: w(70)),
+                          SizedBox(width: w(20)),
+                          (datos.outs >= 1)
+                              ? Icon(Icons.sports_baseball, size: w(40), color: Colorz.blanco)
+                              : Offstage(),
+                          (datos.outs >= 2)
+                              ? Icon(Icons.sports_baseball, size: w(40), color: Colorz.blanco)
+                              : Offstage(),
+                          (datos.outs >= 3)
+                              ? Icon(Icons.sports_baseball, size: w(40), color: Colorz.blanco)
+                              : Offstage(),
+                          Text('${datos.inningActual}',
+                              style: TextStyle(
+                                  color: Colorz.naranja,
+                                  fontSize: f(30),
+                                  fontWeight: FontWeight.bold)),
+                          Icon(
+                              (datos.abriendoCerrando == 'abriendo')
+                                  ? Icons.arrow_drop_up
+                                  : Icons.arrow_drop_down,
+                              size: w(40),
+                              color: Colorz.naranja),
+                        ],
+                      ),
+                    );
+                  }
+                
+                  _rowComodines(BuildContext context, Equipo equipo, Pregunta pregunta) {
+                    final hvm = Provider.of<HomeViewModel>(context, listen: false);
+                    return Row(
+                      children: [
+                        _comodinIcono('equipo.jpg', equipo.consultarEquipo, () {
+                          hvm.consultarEquipo(equipo.idEquipo);
+                        }),
+                        SizedBox(width: w(10)),
+                        _comodinIcono('biblia.jpg', equipo.consultarBiblia, () {
+                          hvm.consultarBiblia(equipo.idEquipo);
+                        }),
+                        SizedBox(width: w(10)),
+                        //_comodinIcono('sacrificio.jpg', 'Sólo es posible si existe al menos un jugador en base y menos de 2 outs en la pizarra. Existe un 50% de probabilidad de mover a todos los jugadores embasados a cambio de 1 OUT y otro 50% de probabilidad de producir un DOBLE PLAY.', 'Toque de Bola'),
+                        //SizedBox(height: w(15)),
+                        _comodinIcono('cambiar.jpg', equipo.cambiarPregunta, () {
+                          hvm.cambiarPregunta(equipo.idEquipo, context, pregunta);
+                        }),
+                        SizedBox(width: w(10)),
+                        _comodinIcono('bateador.jpg', equipo.cambiarBateador, () {
+                          hvm.cambiarBateador(equipo.idEquipo);
+                        }),
+                      ],
+                    );
+                  }
+                
+                  _comodinIcono(
+                    String image,
+                    int comodin,
+                    Function function,
+                  ) {
+                    return Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Stack(
+                          children: [
+                            Container(
+                              child: InkWell(
+                                onTap: (comodin == 1) ? function : null,
+                                child: ClipOval(
+                                    child: Image(
+                                  fit: BoxFit.cover,
+                                  image: AssetImage("assets/logosEquipos/$image"),
+                                  width: w(130),
+                                  height: w(130),
+                                )),
+                              ),
+                              decoration: new BoxDecoration(
+                                color: Colorz.blanco, // border color
+                                shape: BoxShape.circle,
+                                border: new Border.all(
+                                  width: w(5),
+                                  color: Colorz.blanco,
+                                ),
+                              ),
+                            ),
+                            (comodin == 0)
+                                ? Center(
+                                    child: Icon(Icons.cancel_outlined,
+                                        color: Colorz.rojo, size: w(140)))
+                                : Offstage()
+                          ],
+                        ),
+                      ],
+                    );
+                  }
+                
+                  _gifBurla(String image) {
+                    return Image(
+        fit: BoxFit.cover,
+        image: AssetImage("assets/logosEquipos/$image.gif",),
+        height: 280,
+        width: 250,
+          );
+                  }
 }

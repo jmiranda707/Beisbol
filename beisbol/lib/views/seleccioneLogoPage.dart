@@ -47,11 +47,11 @@ class SeleccioneLogoPage extends StatelessWidget {
               children: [
                     Expanded(child: SizedBox()),
                 _rows(
-                    'princesa.png',
+                    'pelotero.png',
                     'soldado2.png',
                     'oveja.png',
                     'guerrero.png',
-                    Colorz.rosado,
+                    Colors.blueAccent,
                     Colorz.verdeOscuro,
                     Colorz.azulCielo,
                     Colorz.morado, context,),

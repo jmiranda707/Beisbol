@@ -3,6 +3,7 @@ import 'package:beisbol/models/equipoModel.dart';
 import 'package:beisbol/settings/colorz.dart';
 import 'package:beisbol/settings/responsive.dart';
 import 'package:beisbol/viewModels/homeViewModel.dart';
+import 'package:beisbol/widgets/botones.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:audioplayers/audio_cache.dart';
@@ -25,8 +26,9 @@ class _FinPageState extends State<FinPage> {
   playLocal() async {
     final player = AudioCache();
     await player.play(
-      'audios/venevision.mp3',
+      'audios/aplausosfin.mp3',
     );
+    
   }
 
   @override
@@ -219,6 +221,23 @@ class _FinPageState extends State<FinPage> {
               ),
             ),
           ),
+ Positioned(
+              bottom: 30,
+                          left: MediaQuery.of(context).size.width / 2 - 100,
+
+              
+                        child: CircularButton(
+                    borderColor: Colorz.blanco,
+                    width: 200,
+                    color: Colorz.rojo,
+                    function: () {
+                      Navigator.pushNamed(context, '/');
+                    },
+                    height: 60,
+                    nameButton: 'FINALIZAR',
+                  ),
+          
+          )
         ],
       ),
     );

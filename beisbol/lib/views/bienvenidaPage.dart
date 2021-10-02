@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:beisbol/settings/colorz.dart';
 import 'package:beisbol/settings/responsive.dart';
 import 'package:beisbol/widgets/botones.dart';
@@ -24,8 +25,12 @@ class _BienvenidaPageState extends State<BienvenidaPage> {
 
   playLocal() async {
     final player= AudioCache();
-    await player.play('audios/fanaticada.mp3',);
-    
+    await player.play('audios/tararara.mp3',);
+  
+  }
+  detener() async{
+    final player= AudioCache();
+     player.clearCache();
   }
 
   @override
@@ -51,23 +56,19 @@ class _BienvenidaPageState extends State<BienvenidaPage> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               SizedBox(
-                height: w(160),
+                height: w(210),
               ),
-              Center(
-                  child: Text('Bienvenidos\nal',
-                  textAlign: TextAlign.center,
-                      style: TextStyle(
-                        
-                          fontSize: f(100),
-                          fontWeight: FontWeight.bold,
-                          color: Colorz.negro))),
-              SizedBox(
-                height: w(50),
-              ),
+             
               Center(
                   child: Text('BEISBOL BÍBLICO',
                       style: TextStyle(
                           fontSize: f(130),
+                          fontWeight: FontWeight.bold,
+                          color: Colorz.amarillo))),
+              Center(
+                  child: Text('Célula de Vista Hermosa',
+                      style: TextStyle(
+                          fontSize: f(100),
                           fontWeight: FontWeight.bold,
                           color: Colorz.amarillo))),
               SizedBox(
@@ -78,10 +79,11 @@ class _BienvenidaPageState extends State<BienvenidaPage> {
                 width: 200,
                 color: Colorz.rojo,
                 function: () {
+                  detener();
                   Navigator.pushNamed(context, 'seleccioneLogo');
                 },
                 height: 60,
-                nameButton: 'INGRESAR',
+                nameButton: 'COMENZAR',
               )
             ],
           ),

@@ -6,7 +6,7 @@ class PreguntasConst {
   static List<Pregunta> preguntas = [
     //********************************* TITO ************************************************
     //hits
-    Pregunta(
+    /*Pregunta(
       idLibro: 1,
       idPregunta: 1,
       contestada: false,
@@ -685,7 +685,572 @@ class PreguntasConst {
       cita: 'Tito 3:2',
       respuesta: 'C',
       valor: 1,
-    ),
+    ),*/
 
+    ///////////////////////////////////// COLOSENSES //////////////////////////////////
+    Pregunta(
+        idLibro: 2,
+        idPregunta: 1,
+        contestada: false,
+        pregunta: '¿Quién escribió la carta a los Colosenses?',
+        cita: 'Colosenses 1:1',
+        valor: 1,
+        respuesta: 'Pablo (y créditos a Timoteo)'),
+    Pregunta(
+        idLibro: 2,
+        idPregunta: 2,
+        contestada: false,
+        pregunta:
+            '¿De qué ciudad eran los santos y fieles a quienes Pablo dirige su carta?',
+        cita: 'Colosenses 1:2',
+        valor: 1,
+        respuesta: 'Colosas'),
+    Pregunta(
+        idLibro: 2,
+        idPregunta: 3,
+        contestada: false,
+        pregunta:
+            '¿Cuáles son las 2 palabras que utiliza Pablo para describir a los colosenses?',
+        cita: 'Colosenses 1:2',
+        valor: 2,
+        respuesta: 'santos y fieles'),
+    Pregunta(
+        idLibro: 2,
+        idPregunta: 4,
+        contestada: false,
+        pregunta:
+            'Complete el saludo de Pablo a los colosenses: _______ y _______ sean a vosotros, de ______ nuestro Padre y del _______ Jesucristo.',
+        cita: 'Colosenses 1:2',
+        valor: 2,
+        respuesta: 'Gracia, Paz, Dios, Señor'),
+    Pregunta(
+        idLibro: 2,
+        idPregunta: 5,
+        contestada: false,
+        pregunta: '¿Qué era lo que Pablo siempre hacia por los colosenses?',
+        cita: 'Colosenses 1:3',
+        valor: 1,
+        respuesta: 'Orar'),
+    Pregunta(
+        idLibro: 2,
+        idPregunta: 6,
+        contestada: false,
+        pregunta: '¿En quién tenían fe los colosenses?',
+        cita: 'Colosenses 1:4',
+        valor: 1,
+        respuesta: 'Cristo Jesús'),
+    Pregunta(
+        idLibro: 2,
+        idPregunta: 7,
+        contestada: false,
+        pregunta: '¿a quién amaban los colosenses?',
+        cita: 'Colosenses 1:4',
+        valor: 1,
+        respuesta: 'a todos los santos'),
+    Pregunta(
+        idLibro: 2,
+        idPregunta: 8,
+        contestada: false,
+        pregunta:
+            '¿En dónde estaba guardada la esperanza de los colosenses, según Pablo?',
+        cita: 'Colosenses 1:5',
+        valor: 1,
+        respuesta: 'en los cielos'),
+    Pregunta(
+        idLibro: 2,
+        idPregunta: 9,
+        contestada: false,
+        pregunta: '¿Cómo describe Pablo, la palabra del evangelio?',
+        cita: 'Colosenses 1:5',
+        valor: 1,
+        respuesta: 'verdadera'),
+    Pregunta(
+        idLibro: 2,
+        idPregunta: 10,
+        contestada: false,
+        pregunta:
+            '¿cuáles son las dos características o funciones del evangelio en cada persona, desde que ésta cree?',
+        cita: 'Colosenses 1:6',
+        valor: 2,
+        respuesta: 'lleva fruto y crece'),
+    Pregunta(
+        idLibro: 2,
+        idPregunta: 11,
+        contestada: false,
+        pregunta: '¿Hasta dónde ha llegado el evangelio, según Pablo?',
+        cita: 'Colosenses 1:6',
+        valor: 1,
+        respuesta: 'a todo el mundo'),
+    Pregunta(
+        idLibro: 2,
+        idPregunta: 12,
+        contestada: false,
+        pregunta:
+            'Diga según colosenses 1:6, ¿desde cuándo comenzaron a crecer espiritualmente los colosenses?',
+        cita: 'Colosenses 1:6',
+        valor: 3,
+        respuesta:
+            'Desde el dia que oyeron y conocieron la gracia de Dios en verdad'),
+    Pregunta(
+        idLibro: 2,
+        idPregunta: 13,
+        contestada: false,
+        pregunta:
+            '¿A quién describe Pablo como un fiel ministro de Cristo para los colosenses?',
+        cita: 'Colosenses 1:7',
+        valor: 1,
+        respuesta: 'Epafras'),
+    Pregunta(
+        idLibro: 2,
+        idPregunta: 14,
+        contestada: false,
+        pregunta: '''Quién también nos ha declarado vuestro amor:\n'''
+            '''a)	En verdad\n'''
+            '''b)	Sincero\n'''
+            '''c)	En el Espiritu\n'''
+            '''d)	Fraternal\n''',
+        cita: 'Colosenses 1:8',
+        valor: 1,
+        respuesta: 'C'),
+    Pregunta(
+        idLibro: 2,
+        idPregunta: 15,
+        contestada: false,
+        pregunta:
+            '¿Cuáles eran los 3 componentes (o propósitos) en la petición de Pablo por los colosenses, por la cual no podía cesar de orar?',
+        cita: 'Colosenses 1:9',
+        valor: 4,
+        respuesta:
+            'sean llenos del conocimiento de su voluntad, en sabiduría e inteligencia espiritual'),
+    Pregunta(
+        idLibro: 2,
+        idPregunta: 16,
+        contestada: false,
+        pregunta:
+            'Mencione 4 conductas o virtudes que Pablo esperaba ver en los colosenses, y por lo cual oraba sin cesar a Dios Padre.',
+        cita: 'Colosenses 1:10-12',
+        valor: 4,
+        respuesta: 'buscar en biblia'),
+    Pregunta(
+        idLibro: 2,
+        idPregunta: 17,
+        contestada: false,
+        pregunta: '''Dios nos ha hecho aptos para:\n'''
+            '''a)	Toda buena obra en Cristo Jesus\n'''
+            '''b)	Participar de la herencia de los santos en luz\n'''
+            '''c)	Glorificar la preeminencia de Cristo\n'''
+            '''d)	La redención por su sangre, el perdón de pecados\n''',
+        cita: 'Colosenses 1:12',
+        valor: 1,
+        respuesta: 'b'),
+    Pregunta(
+        idLibro: 2,
+        idPregunta: 18,
+        contestada: false,
+        pregunta: '¿de dónde nos ha librado Dios, y a dónde nos ha trasladado?',
+        cita: 'Colosenses 1:13',
+        valor: 2,
+        respuesta: 'de la potestad de las tinieblas al Reino de su amado Hijo'),
+    Pregunta(
+        idLibro: 2,
+        idPregunta: 19,
+        contestada: false,
+        pregunta:
+            '¿cuáles son 2 de los beneficios que tenemos en Cristo Jesús?',
+        cita: 'Colosenses 1:14',
+        valor: 3,
+        respuesta: 'redención y perdón de pecados'),
+    Pregunta(
+        idLibro: 2,
+        idPregunta: 20,
+        contestada: false,
+        pregunta: '¿Quién es la imagen visible de Dios?',
+        cita: 'Colosenses 1:13-15',
+        valor: 1,
+        respuesta: 'su Hijo jesus'),
+    Pregunta(
+        idLibro: 2,
+        idPregunta: 21,
+        contestada: false,
+        pregunta:
+            'Complete el versículo: Él es la __________ del Dios __________ el __________ de toda _________.',
+        cita: 'Colosenses 1:15',
+        valor: 4,
+        respuesta: 'imagen, invisible, primogénito, creación'),
+    Pregunta(
+        idLibro: 2,
+        idPregunta: 22,
+        contestada: false,
+        pregunta:
+            'Complete el texto: En él fueron creadas _______ las cosas, las que hay en _____________ y las que hay en ________, _____________ e  ____________.',
+        cita: 'Colosenses 1:16',
+        valor: 4,
+        respuesta: 'Todas, los cielos, la tierra, visibles, invisibles'),
+    Pregunta(
+        idLibro: 2,
+        idPregunta: 23,
+        contestada: false,
+        pregunta:
+            'Mencione 3 entidades espirituales, invisibles, que también fueron creadas por medio de Cristo y para Cristo.',
+        cita: 'Colosenses 1:16',
+        valor: 3,
+        respuesta: 'tronos, dominios, principados, potestades'),
+    Pregunta(
+        idLibro: 2,
+        idPregunta: 24,
+        contestada: false,
+        pregunta:
+            'Complete: él es _________ de todas las cosas y todas las cosas en él _______.',
+        cita: 'Colosenses 1:17',
+        valor: 2,
+        respuesta: 'antes, subsisten'),
+    Pregunta(
+        idLibro: 2,
+        idPregunta: 25,
+        contestada: false,
+        pregunta:
+            'Cristo y su Iglesia son comparados con el cuerpo humano, en donde Cristo representa __________ y la iglesia, que somos todos los creyentes, representa ___________.',
+        cita: 'Colosenses 1:18',
+        valor: 2,
+        respuesta: 'cabeza, cuerpo'),
+    Pregunta(
+        idLibro: 2,
+        idPregunta: 26,
+        contestada: false,
+        pregunta:
+            'Complete: por cuanto ___________ al ___________ que en él habitase toda ___________ .',
+        cita: 'Colosenses 1:19',
+        valor: 3,
+        respuesta: 'agradó, padre, plenitud'),
+    Pregunta(
+        idLibro: 2,
+        idPregunta: 27,
+        contestada: false,
+        pregunta:
+            '¿cuáles 2 cosas reconcilió el Padre consigo mismo, por medio de Jesucristo?',
+        cita: 'Colosenses 1:20',
+        valor: 2,
+        respuesta: 'las que están en los cielos y las que están en la tierra'),
+    Pregunta(
+        idLibro: 2,
+        idPregunta: 28,
+        contestada: false,
+        pregunta:
+            '¿A través de qué ha hecho el Padre la paz con toda su creación?',
+        cita: 'Colosenses 1:20',
+        valor: 1,
+        respuesta: 'la sangre de la cruz'),
+    Pregunta(
+        idLibro: 2,
+        idPregunta: 29,
+        contestada: false,
+        pregunta:
+            '¿Explique según la cita bíblica, cómo era nuestra condición en otro tiempo (mencione al menos 2 cosas), y qué ha pasado ahora?',
+        cita: 'Colosenses 1:21',
+        valor: 4,
+        respuesta:
+            'eramos extraños, enemigos en nuestra mente y hemos sido reconciliados'),
+    Pregunta(
+        idLibro: 2,
+        idPregunta: 30,
+        contestada: false,
+        pregunta:
+            '¿por medio de qué acto hemos sido reconciliados con Dios y para qué?',
+        cita: 'Colosenses 1:22',
+        valor: 4,
+        respuesta:
+            'por medio de la muerte de Cristo, para presentarnos santos, sin mancha e irreprensibles'),
+    Pregunta(
+        idLibro: 2,
+        idPregunta: 31,
+        contestada: false,
+        pregunta: '''Seleccione la opción correcta:\n'''
+            '''a)	Pablo Se gozaba en sus padecimientos\n'''
+            '''b)	Pablo veía a Cristo en sus prisiones\n'''
+            '''c)	Pablo sentía pena por los creyentes de colosa\n'''
+            '''d)	Todas las anteriores.\n''',
+        cita: 'Colosenses 1:24',
+        valor: 1,
+        respuesta: 'a'),
+    Pregunta(
+        idLibro: 2,
+        idPregunta: 32,
+        contestada: false,
+        pregunta:
+            '¿Para qué fue hecho ministro Pablo, según la administración de Dios?',
+        cita: 'Colosenses 1:25',
+        valor: 1,
+        respuesta: 'Para anunciar cumplidamente la palabra de Dios'),
+    Pregunta(
+        idLibro: 2,
+        idPregunta: 33,
+        contestada: false,
+        pregunta: '¿Desde cuándo había estado oculto el misterio de Dios?',
+        cita: 'Colosenses 1:26',
+        valor: 2,
+        respuesta: 'desde los siglos y edades'),
+    Pregunta(
+        idLibro: 2,
+        idPregunta: 34,
+        contestada: false,
+        pregunta:
+            'El misterio de Dios que había estado oculto, fue manifestado a nosotros los santos. (verdadero o falso).',
+        cita: 'Colosenses 1:26',
+        valor: 1,
+        respuesta: 'verdadero'),
+    Pregunta(
+        idLibro: 2,
+        idPregunta: 35,
+        contestada: false,
+        pregunta:
+            'Complete el texto: a quienes _________  quiso dar a conocer las _________ de la gloria de este ___________ entre los gentiles; que es ___________ en vosotros la _____________ de gloria.',
+        cita: 'Colosenses 1:27',
+        valor: 4,
+        respuesta: 'Dios, riquezas, misterio, cristo, esperanza'),
+    Pregunta(
+        idLibro: 2,
+        idPregunta: 36,
+        contestada: false,
+        pregunta:
+            '''¿de qué manera actuaba la potencia de Cristo en el apóstol Pablo?\n'''
+            '''a)	Eficaz y sabiamente\n'''
+            '''b)	Poderosamente\n'''
+            '''c)	Por caminos misteriosos\n'''
+            '''d)	Ninguna de las anteriores\n''',
+        cita: 'Colosenses 1:29',
+        valor: 1,
+        respuesta: 'b'),
+    Pregunta(
+        idLibro: 2,
+        idPregunta: 37,
+        contestada: false,
+        pregunta:
+            '''Pablo sostenía gran lucha por los Colosenses y por los que estaban en:\n'''
+            '''a)	Nínive\n'''
+            '''b)	Jerusalén\n'''
+            '''c)	Laodicea\n'''
+            '''d)	Creta\n''',
+        cita: 'Colosenses 2:1',
+        valor: 1,
+        respuesta: 'c'),
+    Pregunta(
+        idLibro: 2,
+        idPregunta: 38,
+        contestada: false,
+        pregunta:
+            '''Pablo luchaba por los creyentes de cada iglesia, con el propósito de consolar:\n'''
+            '''a)	Sus corazones\n'''
+            '''b)	A su familia\n'''
+            '''c)	A los que lloran\n'''
+            '''d)	Al débil en la fe\n''',
+        cita: 'Colosenses 2:2',
+        valor: 1,
+        respuesta: 'a'),
+    Pregunta(
+        idLibro: 2,
+        idPregunta: 39,
+        contestada: false,
+        pregunta:
+            'Diga cuales son 2 de los tesoros que según Pablo, están escondidos en Cristo.',
+        cita: 'Colosenses 2:3',
+        valor: 2,
+        respuesta: 'sabiduría y conocimiento'),
+    Pregunta(
+        idLibro: 2,
+        idPregunta: 40,
+        contestada: false,
+        pregunta:
+            'Complete el texto: y esto os digo para que nadie os ________ con palabras ___________.',
+        cita: 'Colosenses 2:4',
+        valor: 2,
+        respuesta: 'engañe, persuasivas'),
+    Pregunta(
+        idLibro: 2,
+        idPregunta: 41,
+        contestada: false,
+        pregunta:
+            'Pablo estaba ausente en el cuerpo y ausente en el espíritu. (verdadero o falso).',
+        cita: 'Colosenses 2:5',
+        valor: 1,
+        respuesta: 'falso'),
+    Pregunta(
+        idLibro: 2,
+        idPregunta: 42,
+        contestada: false,
+        pregunta:
+            '¿Cuáles son las 2 cosas que Pablo se gozaba de mirar en los colosenses?',
+        cita: 'Colosenses 2:5',
+        valor: 3,
+        respuesta: 'su buen orden y la firmeza de su fe en Cristo'),
+    Pregunta(
+        idLibro: 2,
+        idPregunta: 43,
+        contestada: false,
+        pregunta:
+            '''Por tanto, de la manera que habéis aprendido al Señor Jesucristo:\n'''
+            '''a)	Pensad sabiamente\n'''
+            '''b)	Recibid el evangelio\n'''
+            '''c)	Andad en él\n'''
+            '''d)	Ninguna de las anteriores\n''',
+        cita: 'Colosenses 2:6',
+        valor: 1,
+        respuesta: 'c'),
+    Pregunta(
+        idLibro: 2,
+        idPregunta: 44,
+        contestada: false,
+        pregunta:
+            '''Según el versículo, ¿en qué recomienda Pablo que abundemos?:\n'''
+            '''A)	Fe y esperanza\n'''
+            '''B)	Temor de Dios\n'''
+            '''C)	Buenas acciones\n'''
+            '''D)	Ninguna de las anteriores\n''',
+        cita: 'Colosenses 2:7',
+        valor: 1,
+        respuesta: 'd'),
+    Pregunta(
+        idLibro: 2,
+        idPregunta: 45,
+        contestada: false,
+        pregunta:
+            'En Cristo habita ___________ toda la ______________ de la __________. ',
+        cita: 'Colosenses 2:9',
+        valor: 4,
+        respuesta: 'corporalmente, plenitud, deidad'),
+    Pregunta(
+        idLibro: 2,
+        idPregunta: 46,
+        contestada: false,
+        pregunta:
+            '¿Según el texto, de quiénes es la cabeza Cristo?',
+        cita: 'Colosenses 2:10',
+        valor: 2,
+        respuesta: 'de todo principado y potestad'),
+    Pregunta(
+        idLibro: 2,
+        idPregunta: 47,
+        contestada: false,
+        pregunta:
+            'Al creer en Cristo, somos circuncidados con circuncisión espiritual, y ahora no necesitamos circuncidarnos físicamente. Verdadero o falso.',
+        cita: 'Colosenses 2:11',
+        valor: 1,
+        respuesta: 'verdadero'),
+    Pregunta(
+        idLibro: 2,
+        idPregunta: 48,
+        contestada: false,
+        pregunta:
+            '¿Cuáles son los 2 atributos o palabras, con los cuales Pablo describe el cuerpo humano?.',
+        cita: 'Colosenses 2:11',
+        valor: 2,
+        respuesta: 'pecaminoso, carnal'),
+    Pregunta(
+        idLibro: 2,
+        idPregunta: 49,
+        contestada: false,
+        pregunta:
+            'En el bautismo somos ___________ y _____________ con Cristo, mediante ____________ en el poder de Dios, que le ______________ de los muertos.',
+        cita: 'Colosenses 2:12',
+        valor: 4,
+        respuesta: 'sepultados, resucitados, la fe, levantó'),
+    Pregunta(
+        idLibro: 2,
+        idPregunta: 50,
+        contestada: false,
+        pregunta:
+            'Antes de Cristo nos encontrábamos vivos espiritualmente. Verdadero o falso.',
+        cita: 'Colosenses 2:13',
+        valor: 1,
+        respuesta: 'falso'),
+    Pregunta(
+        idLibro: 2,
+        idPregunta: 51,
+        contestada: false,
+        pregunta:
+            'Complete: y a vosotros, estando  __________ en vuestros _________, y en la ___________ de vuestra carne, os dio _________ juntamente con él, _____________ todos vuestros ______________. ',
+        cita: 'Colosenses 2:13',
+        valor: 4,
+        respuesta: 'muertos, pecados, circuncisión, vida, perdonando, pecados'),
+    Pregunta(
+        idLibro: 2,
+        idPregunta: 52,
+        contestada: false,
+        pregunta:
+            '¿qué cosa anuló Cristo, que nos era contraria?',
+        cita: 'Colosenses 2:14',
+        valor: 1,
+        respuesta: 'el acta de los decretos'),
+    Pregunta(
+        idLibro: 2,
+        idPregunta: 53,
+        contestada: false,
+        pregunta:
+            '¿Dónde clavó Cristo el acta de los decretos que había contra nosotros?',
+        cita: 'Colosenses 2:14',
+        valor: 1,
+        respuesta: 'en la cruz'),
+    Pregunta(
+        idLibro: 2,
+        idPregunta: 54,
+        contestada: false,
+        pregunta:
+            'Con su muerte, Cristo no solo despojó a los principados y potestades, sino que también los __________  __________,triunfando sobre ellos en la cruz.',
+        cita: 'Colosenses 2:15',
+        valor: 2,
+        respuesta: 'exhibió públicamente'),
+      Pregunta(
+        idLibro: 2,
+        idPregunta: 55,
+        contestada: false,
+        pregunta:
+            'Mencione al menos 3 cosas en las cuales nadie puede juzgarnos.',
+        cita: 'Colosenses 2:16',
+        valor: 3,
+        respuesta: 'comida, bebida, días de fiesta, luna nueva, días de reposo'),
+        Pregunta(
+        idLibro: 2,
+        idPregunta: 56,
+        contestada: false,
+        pregunta:
+            '¿quién da el crecimiento al cuerpo de Cristo?',
+        cita: 'Colosenses 2:19',
+        valor: 1,
+        respuesta: 'Dios'),
+      Pregunta(
+        idLibro: 2,
+        idPregunta: 57,
+        contestada: false,
+        pregunta:
+            'Preceptos como: Dejar de comer, beber, gustar, tocar, y muchos otros mandamientos de hombre, contra qué cosa no tienen valor alguno.',
+        cita: 'Colosenses 2:23',
+        valor: 2,
+        respuesta: 'los apetitos de la carne'),
+        Pregunta(
+        idLibro: 2,
+        idPregunta: 58,
+        contestada: false,
+        pregunta:
+            'Nombre las 3 personas que se mencionan en la carta a los Colosenses.',
+        cita: 'Colosenses 1:1,7',
+        valor: 2,
+        respuesta: 'Pablo, Timoteo y Epafras'),
+        Pregunta(
+        idLibro: 2,
+        idPregunta: 59,
+        contestada: false,
+        pregunta:
+            '¿Cuántos capítulos en total componen la carta a los Colosenses?',
+        cita: 'Colosenses',
+        valor: 1,
+        respuesta: '4'),
+        Pregunta(
+        idLibro: 2,
+        idPregunta: 60,
+        contestada: false,
+        pregunta:
+            '¿Cuántos versículos tiene el capítulo 1 de Colosenses? ',
+        cita: 'Colosenses',
+        valor: 1,
+        respuesta: '29'),
   ];
 }

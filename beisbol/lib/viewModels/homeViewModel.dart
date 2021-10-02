@@ -167,7 +167,7 @@ class HomeViewModel extends ChangeNotifier {
   }
 
   goToResultado(BuildContext context){
-     Libro libro = LibrosConst.libros.where((i) => i.idLibro == 1).first;// esto se debe seleccionar antes en un listado
+     Libro libro = LibrosConst.libros.where((i) => i.idLibro == 2).first;// TODO: esto se debe seleccionar antes en un listado
      List<Pregunta> preguntas =  PreguntasConst.preguntas.where((i) => i.idLibro == libro.idLibro).toList();
      this.allPreguntas= preguntas;
      DatosInning datos = new DatosInning();
@@ -219,9 +219,9 @@ class HomeViewModel extends ChangeNotifier {
      this.showPregunta= false;
      DatosInning datos= this.datos;
       datos.outs= datos.outs + 1;
-     this.mensajeAnimado = '${datos.outs} OUTS!!';
+     this.mensajeAnimado = (datos.outs==1)?'Primer Out...':(datos.outs==2)?'Llevan 2 Outs!': (datos.outs==3)?'Vaya! Es el último Out!':'Out!!';
      final player= AudioCache();
-     await player.play('audios/burla.mp3',);
+     await player.play('audios/out_mario.mp3',);
      await Future.delayed( Duration(seconds: 6), () {
            this.mensajeAnimado = '';
       });
@@ -329,36 +329,35 @@ class HomeViewModel extends ChangeNotifier {
 
        if(valorBateado==4){
          List<String> mensajes= [];
-         mensajes.add('¡¡Que Batazo!!');
-         mensajes.add('es un...');
-         mensajes.add('¡HOME RUN!');
-         mensajes.add('¡HOME RUN!');
+         mensajes.add('La bola se va... se va...');
+         mensajes.add('¡HOME RUN! ¡HOME RUN!');
+         mensajes.add('¡este si estudió!');
          mensajes.add('${this.equipo1.carreras} - ${this.equipo2.carreras}');
          this.mensajeCorrecto = mensajes;
-         seconds= 14;
+         seconds= 17;
        }
        if(valorBateado==3){
          List<String> mensajes= [];
-         mensajes.add('¡¡WAOOH!!');
-         mensajes.add('llegó hasta tercera...');
-         mensajes.add('¡TRIPLE!');
+         mensajes.add('Waooh... vaya batazo!');
+         mensajes.add('TRIPLE  TRIPLE');
+         mensajes.add('¡Continúa asi!');
          this.mensajeCorrecto = mensajes;
 
          seconds= 10;
        }
        if(valorBateado==2){
          List<String> mensajes= [];
-         mensajes.add('¡¡Que Batazo!!');
-         mensajes.add('pero es un...');
-         mensajes.add('¡DOBLE!');
+         mensajes.add('Que batazo, conectaste un...');
+         mensajes.add('DOBLE DOBLE');
+         mensajes.add('Bien hecho!');
          this.mensajeCorrecto = mensajes;
          seconds= 10;
        }
        if(valorBateado==1){
          List<String> mensajes= [];
-         mensajes.add('HIT!!');
-         mensajes.add('HIT...');
-         mensajes.add('¡¡HIT!!');
+         mensajes.add('Has bateado un...');
+         mensajes.add('HIT HIT');
+         mensajes.add('Buen Trabajo!');
          this.mensajeCorrecto = mensajes;
          seconds= 10;
        }
@@ -404,7 +403,7 @@ class HomeViewModel extends ChangeNotifier {
     }
   }
 
-  void cambiarPregunta(int idEquipo) {
+  void cambiarPregunta(int idEquipo, context, Pregunta pregunta) {
     Equipo equipo= (idEquipo==1)? this.equipo1:this.equipo2;
     equipo.cambiarPregunta=0;
     if(idEquipo==1){
@@ -412,6 +411,22 @@ class HomeViewModel extends ChangeNotifier {
     } 
     else{
       this.equipo2= equipo;
+    }
+
+     ///eliminar la pregunta del listado
+      List<Pregunta> preguntas= this.allPreguntas;
+      preguntas.removeWhere((i) => i.idPregunta== pregunta.idPregunta);
+      this.allPreguntas = preguntas;
+
+    //selecciono nueva pregunta
+    if(preguntas.length>0){
+       final random = new Random();
+    Pregunta pregunta = preguntas[random.nextInt(preguntas.length)];
+    this.preguntaSelected = pregunta;
+    this.showPregunta= true;
+    }
+    else{
+      Navigator.pushNamed(context, 'finPage');
     }
   }
 
